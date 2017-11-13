@@ -1,0 +1,31 @@
+<resources>
+  <string name="app_name">New Mexico Medical Cannabis</string>
+
+
+  <!--textView-->
+  <string name="text_create_account">No account yet? Create one</string>
+  <string name="text_patient_id_card">Patient Identification Card</string>
+  <string name="text_card_id_number">Card ID Number</string>
+  <string name="text_issue_date">Issue Date</string>
+  <string name="text_exp_date">Expiration Date</string>
+  <string name="text_units_available">Units Available</string>
+
+  <!--editText-->
+  <string name="edit_enter_card_number">Enter Card Number</string>
+  <string name="edit_enter_issue_date">Enter Card Issue Date</string>
+  <string name="edit_enter_exp_date">Enter Card Exp Date</string>
+  <string name="edit_enter_email">Email</string>
+  <string name="edit_enter_password">Password</string>
+
+  <!--buttonText-->
+  <string name="button_save">Save</string>
+  <string name="button_login">Login</string>
+
+  <!--menuSettings-->
+  <string name="menu_settings">Settings</string>
+  <string name="menu_about">About</string>
+
+  <!--menuMain-->
+  <string name="menu_patient_card_info">Card Information</string>
+
+</resources>
