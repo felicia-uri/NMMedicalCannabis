@@ -90,7 +90,7 @@ public class TransactionActivity extends AppCompatActivity implements OrmHelper.
     public void onBindViewHolder(final ViewHolder holder, int position) {
       holder.mItem = mValues.get(position);
       holder.mPurchasedFromView.setText(mValues.get(position).getPurchasedFrom());
-      holder.mUnitsPurchasedView.setText(mValues.get(position).getUnitsPurchased());
+      holder.mUnitsPurchasedView.setText(Integer.toString(mValues.get(position).getUnitsPurchased()));
       holder.mStrainNameView.setText(mValues.get(position).getStrainName());
 
       holder.mView.setOnClickListener(new View.OnClickListener() {
