@@ -97,8 +97,8 @@ public class TransactionActivity extends AppCompatActivity implements OrmHelper.
         @Override
         public void onClick(View v) {
 //            Context context = v.getContext();
-//            Intent intent = new Intent(context, StudentDetailActivity.class);
-//            intent.putExtra(StudentDetailFragment.STUDENT_ID, holder.mItem.getId());
+//            Intent intent = new Intent(context, TransactionActivity.class);
+//            intent.putExtra(Transactions.class, holder.mItem.getId());
 //            context.startActivity(intent);
         }
       });

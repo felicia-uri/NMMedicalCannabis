@@ -1,5 +1,7 @@
 package edu.cnm.deepdive.nmmedicalcannabis.fragments;
 
+import static java.lang.Long.parseLong;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,13 +10,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import edu.cnm.deepdive.nmmedicalcannabis.R;
-import edu.cnm.deepdive.nmmedicalcannabis.activites.TransactionActivity;
+import edu.cnm.deepdive.nmmedicalcannabis.entities.PatientCard;
+import edu.cnm.deepdive.nmmedicalcannabis.helpers.OrmHelper.OrmInteraction;
+import edu.cnm.deepdive.nmmedicalcannabis.navigation.NavMenu;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 
 public class PatientCardInfoPage extends Fragment implements OnClickListener{
 
   private OnFragmentInteractionListener mListener;
+
+  private EditText cardNumber;
+  private EditText issueDate;
+  private EditText expDate;
+  private EditText unitsAvailable;
 
 
 
@@ -30,8 +43,10 @@ public class PatientCardInfoPage extends Fragment implements OnClickListener{
     View inflate = inflater.inflate(R.layout.fragment_patient_card_info_page, container, false);
 
     inflate.findViewById(R.id.button_save).setOnClickListener(this);
-
-
+    cardNumber = inflate.findViewById(R.id.editCardNumber);
+    issueDate = inflate.findViewById(R.id.editIssueDate);
+    expDate = inflate.findViewById(R.id.editExpDate);
+    unitsAvailable = inflate.findViewById(R.id.editUnitsAvailable);
 
     return inflate;
   }
@@ -53,7 +68,21 @@ public class PatientCardInfoPage extends Fragment implements OnClickListener{
 
   @Override
   public void onClick(View view) {
-  Intent intent = new Intent(getActivity(), TransactionActivity.class);
+    try {
+      PatientCard patientcard = new PatientCard();
+      patientcard.setCardID(parseLong(cardNumber.getText().toString()));
+      SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd-yyyy");
+      patientcard.setIssueDate(simpleDateFormat.parse(issueDate.getText().toString()));
+      patientcard.setExpDate(simpleDateFormat.parse(expDate.getText().toString()));
+      patientcard.setUnitsAvailable(Integer.parseInt(unitsAvailable.getText().toString()));
+      ((OrmInteraction) getActivity()).getHelper().getPatientCardDao().create(patientcard);
+    } catch (ParseException e) {
+      e.printStackTrace();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
+    Intent intent = new Intent(getActivity(), NavMenu.class);
   startActivity(intent);
   }
 

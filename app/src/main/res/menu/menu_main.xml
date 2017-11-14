@@ -5,8 +5,11 @@
 
   <group android:checkableBehavior="single">
     <item
-      android:id="@+id/patient_card_info_page"
+      android:id="@+id/fragment_patient_card_info_page"
       android:title="@string/menu_patient_card_info"/>
+    <item
+      android:id="@+id/fragment_transactions_page"
+      android:title="@string/text_transaction_page_title"/>
   </group>
 
 </menu>

@@ -1,6 +1,6 @@
 package edu.cnm.deepdive.nmmedicalcannabis.fragments;
 
-import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import edu.cnm.deepdive.nmmedicalcannabis.navigation.NavMenu;
 import edu.cnm.deepdive.nmmedicalcannabis.R;
-import edu.cnm.deepdive.nmmedicalcannabis.fragments.PatientCardInfoPage.OnFragmentInteractionListener;
 
 
 public class LoginPage extends Fragment implements OnClickListener {
@@ -51,7 +51,8 @@ public class LoginPage extends Fragment implements OnClickListener {
 
   @Override
   public void onClick(View view) {
-    getFragmentManager().beginTransaction().replace(R.id.fragment_container, new PatientCardInfoPage()).commit();
+    Intent intent = new Intent(getActivity(), NavMenu.class);
+    startActivity(intent);
   }
 
   public interface OnFragmentInteractionListener {

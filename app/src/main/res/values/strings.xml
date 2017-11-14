@@ -9,6 +9,9 @@
   <string name="text_issue_date">Issue Date</string>
   <string name="text_exp_date">Expiration Date</string>
   <string name="text_units_available">Units Available</string>
+  <string name="text_dispensary_name">Dispensary:</string>
+  <string name="text_strain_name">Strain:</string>
+
 
   <!--editText-->
   <string name="edit_enter_card_number">Enter Card Number</string>
@@ -27,5 +30,14 @@
 
   <!--menuMain-->
   <string name="menu_patient_card_info">Card Information</string>
+  <string name="text_transaction_page_title">Transactions</string>
+  <string name="text_units_grams">Units/Grams:</string>
+  <string name="title_activity_nav_menu">nav_menu</string>
+
+  <string name="navigation_drawer_open">Open navigation drawer</string>
+  <string name="navigation_drawer_close">Close navigation drawer</string>
+
+  <string name="action_settings">Settings</string>
+
 
 </resources>
