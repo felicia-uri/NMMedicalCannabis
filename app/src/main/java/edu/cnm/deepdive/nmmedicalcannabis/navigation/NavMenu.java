@@ -44,8 +44,8 @@ public class NavMenu extends AppCompatActivity
     NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
     navigationView.setNavigationItemSelectedListener(this);
 
-//    PatientCardInfoPage patientCardInfoPage = new PatientCardInfoPage();
-//    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_nav_container, patientCardInfoPage).commit();
+    PatientCardInfoPage patientCardInfoPage = new PatientCardInfoPage();
+    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_nav_container, patientCardInfoPage).commit();
 
   }
 

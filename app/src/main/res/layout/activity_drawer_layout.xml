@@ -11,11 +11,11 @@
   tools:openDrawer="start">
 
   <!--Main content view-->
-  <FrameLayout
-    android:id="@+id/fragment_nav_container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    ></FrameLayout>
+  <include
+    layout="@layout/app_bar_nav_menu"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    />
 
   <!--Navigation drawer-->
   <android.support.design.widget.NavigationView
@@ -27,11 +27,7 @@
     app:headerLayout="@layout/nav_header_nav_menu"
     app:menu="@menu/menu_main"/>
 
-  <include
-    layout="@layout/app_bar_nav_menu"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    />
+
 
 
 </android.support.v4.widget.DrawerLayout>
