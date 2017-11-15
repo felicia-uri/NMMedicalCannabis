@@ -9,4 +9,6 @@
   tools:context="edu.cnm.deepdive.nmmedicalcannabis.navigation.NavMenu"
   tools:showIn="@layout/app_bar_nav_menu">
 
+
+
 </android.support.constraint.ConstraintLayout>

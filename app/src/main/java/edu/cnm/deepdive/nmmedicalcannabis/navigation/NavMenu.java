@@ -22,7 +22,7 @@ public class NavMenu extends AppCompatActivity
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_nav_menu);
+    setContentView(R.layout.activity_drawer_layout);
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
@@ -41,11 +41,12 @@ public class NavMenu extends AppCompatActivity
     drawer.setDrawerListener(toggle);
     toggle.syncState();
 
-    NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+    NavigationView navigationView = (NavigationView) findViewById(R.id.navigation);
     navigationView.setNavigationItemSelectedListener(this);
 
-    PatientCardInfoPage patientCardInfoPage = new PatientCardInfoPage();
-    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_nav_container, patientCardInfoPage).commit();
+//    PatientCardInfoPage patientCardInfoPage = new PatientCardInfoPage();
+//    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_nav_container, patientCardInfoPage).commit();
+
   }
 
   @Override
@@ -72,6 +73,7 @@ public class NavMenu extends AppCompatActivity
     // as you specify a parent activity in AndroidManifest.xml.
     int id = item.getItemId();
 
+
     //noinspection SimplifiableIfStatement
     if (id == R.id.action_settings) {
       return true;
@@ -87,10 +89,10 @@ public class NavMenu extends AppCompatActivity
     int id = item.getItemId();
 
     switch (id) {
-      case R.id.fragment_patient_card_info_page :
+      case R.id.menu_patient_card_info_page:
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_nav_container, new PatientCardInfoPage()).commit();
         break;
-      case R.id.fragment_transactions_page :
+      case R.id.menu_transactions_page :
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_nav_container, new TransactionsPage()).commit();
         break;
     }
