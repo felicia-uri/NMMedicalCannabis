@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/card_view_transactions"
+  app:cardBackgroundColor="@color/colorPrimary"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  app:cardCornerRadius="4dp"
+  android:layout_margin="5dp">
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+      android:id="@+id/dispensaryName"
+      android:layout_width="match_parent"
+      android:layout_height="20dp"
+      android:background="@color/cardview_light_background"
+      android:text="@string/text_dispensary_name"
+      android:gravity="center_vertical"
+      android:textColor="@color/colorTextDark"
+      android:textSize="14dp"
+      />
+
+    <TextView
+      android:id="@+id/cannabisFlower"
+      android:textColor="@color/colorTextLight"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/text_cannabis_flower"
+      android:gravity="center_vertical"
+      android:textSize="10dp"
+      android:layout_below="@id/dispensaryName"
+      android:layout_marginTop="10dp"
+      android:layout_marginLeft="5dp"/>
+
+    <TextView
+      android:id="@+id/strainName"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/text_strain_name"
+      android:gravity="center_vertical"
+      android:textSize="10dp"
+      android:layout_below="@id/cannabisFlower"
+      android:layout_marginTop="10dp"
+      android:layout_marginLeft="5dp"
+      android:textColor="@color/colorTextLight"/>
+
+    <TextView
+      android:id="@+id/units_grams"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="@string/text_units_grams"
+      android:textSize="10dp"
+      android:layout_marginTop="10dp"
+      android:layout_alignParentRight="true"
+      android:layout_marginRight="150dp"
+      android:layout_marginLeft="5dp"
+      android:layout_alignBaseline="@id/dispensaryName"
+      android:textColor="@color/colorTextLight"/>
+
+  </LinearLayout>
+
+</android.support.v7.widget.CardView>

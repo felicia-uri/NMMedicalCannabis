@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:paddingBottom="16dp"
+  android:paddingTop="56dp"
+  android:paddingLeft="16dp"
+  android:paddingRight="16dp"
+  tools:context="edu.cnm.deepdive.nmmedicalcannabis.activities.TransactionActivity">
+
+  <android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".activities.TransactionActivity">
+
+    <android.support.v7.widget.RecyclerView
+      android:id="@+id/recycler_view"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      app:layoutManager="LinearLayoutManager"
+      tools:layout_editor_absoluteX="8dp"
+      tools:layout_editor_absoluteY="8dp"
+      app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+    </android.support.v7.widget.RecyclerView>
+
+  </android.support.design.widget.CoordinatorLayout>
+
+  <android.support.v7.widget.Toolbar
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+  </android.support.v7.widget.Toolbar>
+
+
+</RelativeLayout>

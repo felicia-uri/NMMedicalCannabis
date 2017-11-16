@@ -1,10 +1,9 @@
-package edu.cnm.deepdive.nmmedicalcannabis.activites;
+package edu.cnm.deepdive.nmmedicalcannabis.activities;
 
-import android.content.Context;
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,12 +20,17 @@ public class TransactionActivity extends AppCompatActivity implements OrmHelper.
 
   private OrmHelper helper = null;
 
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_transaction);
+    setContentView(R.layout.activity_recycler_view);
 
-    View recyclerView = findViewById(R.id.transaction_list);
+    RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
+    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+
+    View recyclerView = findViewById(R.id.recycler_view);
     assert recyclerView != null;
     setupRecyclerView((RecyclerView) recyclerView);
 
@@ -40,7 +44,6 @@ public class TransactionActivity extends AppCompatActivity implements OrmHelper.
       throw new RuntimeException(e);
     }
   }
-
 
 
   @Override
@@ -82,16 +85,16 @@ public class TransactionActivity extends AppCompatActivity implements OrmHelper.
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
       View view = LayoutInflater.from(parent.getContext())
-          .inflate(R.layout.transaction_list_items, parent, false);
+          .inflate(R.layout.transaction_card_layout, parent, false);
       return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
       holder.mItem = mValues.get(position);
-      holder.mPurchasedFromView.setText(mValues.get(position).getPurchasedFrom());
-      holder.mUnitsPurchasedView.setText(Integer.toString(mValues.get(position).getUnitsPurchased()));
-      holder.mStrainNameView.setText(mValues.get(position).getStrainName());
+      holder.dispensary.setText(mValues.get(position).getPurchasedFrom());
+      holder.grams.setText(Integer.toString(mValues.get(position).getUnitsPurchased()));
+      holder.strain.setText(mValues.get(position).getStrainName());
 
       holder.mView.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -113,24 +116,19 @@ public class TransactionActivity extends AppCompatActivity implements OrmHelper.
     public class ViewHolder extends RecyclerView.ViewHolder {
 
       public final View mView;
-      public final TextView mPurchasedFromView;
-      public final TextView mUnitsPurchasedView;
-      public final TextView mStrainNameView;
+      public final TextView dispensary;
+      public final TextView strain;
+      public final TextView grams;
       public Transactions mItem;
 
       public ViewHolder(View view) {
         super(view);
         mView = view;
-        mPurchasedFromView = (TextView) view.findViewById(R.id.purchased_from);
-        mUnitsPurchasedView = (TextView) view.findViewById(R.id.units_purchased);
-        mStrainNameView = (TextView) view.findViewById(R.id.strain_name);
-      }
-
-      @Override
-      public String toString() {
-        return super.toString() + " '" + mPurchasedFromView.getText() + "'";
+        dispensary = (TextView) view.findViewById(R.id.dispensaryName);
+        strain = (TextView) view.findViewById(R.id.strainName);
+        grams = (TextView) view.findViewById(R.id.units_grams);
       }
     }
   }
 
-  }
+}

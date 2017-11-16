@@ -1,16 +1,10 @@
-package edu.cnm.deepdive.nmmedicalcannabis;
+package edu.cnm.deepdive.nmmedicalcannabis.activities;
 
-import android.app.FragmentManager;
-import android.net.Uri;
-import android.provider.SyncStateContract.Helpers;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
+import edu.cnm.deepdive.nmmedicalcannabis.R;
 import edu.cnm.deepdive.nmmedicalcannabis.fragments.LoginPage;
-import edu.cnm.deepdive.nmmedicalcannabis.fragments.LoginPage.OnFragmentInteractionListener;
-import edu.cnm.deepdive.nmmedicalcannabis.fragments.PatientCardInfoPage;
 import edu.cnm.deepdive.nmmedicalcannabis.helpers.OrmHelper;
 import edu.cnm.deepdive.nmmedicalcannabis.helpers.OrmHelper.OrmInteraction;
 
@@ -21,7 +15,7 @@ public class MainActivity extends AppCompatActivity implements OrmInteraction{
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+    setContentView(R.layout.activity_main_fragment_container);
 
     getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new LoginPage()).commit();
   }

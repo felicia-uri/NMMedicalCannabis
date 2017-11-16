@@ -8,7 +8,7 @@
       android:title="@string/menu_patient_card_info"/>
     <item
       android:id="@+id/menu_transactions_page"
-      android:title="@string/text_transaction_page_title"/>
+      android:title="@string/text_new_transaction"/>
   </group>
 
 </menu>
