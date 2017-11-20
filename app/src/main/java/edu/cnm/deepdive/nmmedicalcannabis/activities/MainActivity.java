@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity implements OrmInteraction{
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    getHelper().getWritableDatabase().close();
     setContentView(R.layout.activity_main_fragment_container);
 
     getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, new LoginPage()).commit();

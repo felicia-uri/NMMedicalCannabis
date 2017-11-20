@@ -2,23 +2,23 @@ package edu.cnm.deepdive.nmmedicalcannabis.helpers;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.support.constraint.ConstraintLayout;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
-import edu.cnm.deepdive.nmmedicalcannabis.entities.PatientCard;
-import edu.cnm.deepdive.nmmedicalcannabis.entities.Transactions;
+import edu.cnm.deepdive.nmmedicalcannabis.entities.PatientCardDatabaseTable;
+import edu.cnm.deepdive.nmmedicalcannabis.entities.TransactionDatabaseTable;
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.Date;
 
 public class OrmHelper extends OrmLiteSqliteOpenHelper {
 
   private static final String DATABASE_NAME = "medicalcannabis.db";
   private static final int DATABASE_VERSION = 1;
 
-  private Dao<PatientCard, Integer> patientCardDao = null;
-  private Dao<Transactions, Integer> transactionsDao = null;
+  private Dao<PatientCardDatabaseTable, Integer> patientCardDao = null;
+  private Dao<TransactionDatabaseTable, Integer> transactionsDao = null;
 
   public OrmHelper(Context context) {
     super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -27,8 +27,8 @@ public class OrmHelper extends OrmLiteSqliteOpenHelper {
   @Override
   public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
     try{
-      TableUtils.createTable(connectionSource,PatientCard.class);
-      TableUtils.createTable(connectionSource, Transactions.class);
+      TableUtils.createTable(connectionSource,PatientCardDatabaseTable.class);
+      TableUtils.createTable(connectionSource, TransactionDatabaseTable.class);
       populateDatabase();
     } catch (SQLException e) {
       throw new RuntimeException(e);
@@ -47,16 +47,16 @@ public class OrmHelper extends OrmLiteSqliteOpenHelper {
 
   }
 
-  public synchronized Dao<PatientCard, Integer> getPatientCardDao() throws SQLException {
+  public synchronized Dao<PatientCardDatabaseTable, Integer> getPatientCardDao() throws SQLException {
     if (patientCardDao == null) {
-      patientCardDao = getDao(PatientCard.class);
+      patientCardDao = getDao(PatientCardDatabaseTable.class);
     }
     return patientCardDao;
   }
 
-  public synchronized Dao<Transactions, Integer> getTransactionsDao() throws SQLException {
+  public synchronized Dao<TransactionDatabaseTable, Integer> getTransactionsDao() throws SQLException {
     if (transactionsDao == null) {
-      transactionsDao = getDao(Transactions.class);
+      transactionsDao = getDao(TransactionDatabaseTable.class);
     }
     return transactionsDao;
   }
@@ -64,22 +64,23 @@ public class OrmHelper extends OrmLiteSqliteOpenHelper {
   private void populateDatabase() throws SQLException {
     Calendar calendar = Calendar.getInstance();
 
-      PatientCard patientCard = new PatientCard();
-      patientCard.setCardID(2748483783949l);
-      calendar.set(2017, 8, 9);
-      patientCard.setIssueDate(calendar.getTime());
-      calendar.set(2017, 7, 22);
-      patientCard.setExpDate(calendar.getTime());
-      patientCard.setUnitsAvailable(230);
-      getPatientCardDao().create(patientCard);
+      PatientCardDatabaseTable patientCardDatabaseTable = new PatientCardDatabaseTable();
+//      patientCardDatabaseTable.setCardID();
+//      calendar.set(2017, 8, 9);
+//      patientCardDatabaseTable.setIssueDate(calendar.getTime());
+//      calendar.set(2017, 7, 22);
+//      patientCardDatabaseTable.setExpDate(calendar.getTime());
+//      patientCardDatabaseTable.setUnitsAvailable(230);
+//      getPatientCardDao().create(patientCardDatabaseTable);
 
 
-    Transactions transactions = new Transactions();
-    transactions.setPatientCard(patientCard);
-    transactions.setUnitsPurchased(5);
-    transactions.setPurchasedFrom("PureLife");
-    transactions.setStrainName("Blue Dream");
-    getTransactionsDao().create(transactions);
+//    TransactionDatabaseTable transactionDatabaseTable = new TransactionDatabaseTable();
+//    transactionDatabaseTable.setPatientCardDatabaseTable(patientCardDatabaseTable);
+//    transactionDatabaseTable.setPurchasedDate(new Date());
+//    transactionDatabaseTable.setUnitsPurchased(5);
+//    transactionDatabaseTable.setPurchasedFrom("PureLife");
+//    transactionDatabaseTable.setStrainName("Blue Dream");
+//    getTransactionsDao().create(transactionDatabaseTable);
   }
 
 

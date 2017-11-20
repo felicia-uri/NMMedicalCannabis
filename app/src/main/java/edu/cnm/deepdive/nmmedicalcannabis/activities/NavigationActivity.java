@@ -1,9 +1,7 @@
-package edu.cnm.deepdive.nmmedicalcannabis.navigation;
+package edu.cnm.deepdive.nmmedicalcannabis.activities;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,28 +9,34 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
 import edu.cnm.deepdive.nmmedicalcannabis.R;
 import edu.cnm.deepdive.nmmedicalcannabis.fragments.PatientCardInfoPage;
 import edu.cnm.deepdive.nmmedicalcannabis.fragments.TransactionsPage;
+import edu.cnm.deepdive.nmmedicalcannabis.helpers.OrmHelper;
+import edu.cnm.deepdive.nmmedicalcannabis.helpers.OrmHelper.OrmInteraction;
 
-public class NavMenu extends AppCompatActivity
-    implements NavigationView.OnNavigationItemSelectedListener {
+public class NavigationActivity extends AppCompatActivity
+    implements NavigationView.OnNavigationItemSelectedListener, OrmInteraction {
+
+  private OrmHelper helper;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_drawer_layout);
+    setContentView(R.layout.navigation_drawer);
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
-    FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-    fab.setOnClickListener(new View.OnClickListener() {
+    FloatingActionButton addtransaction = (FloatingActionButton) findViewById(R.id.add_transaction_button);
+    addtransaction.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-            .setAction("Action", null).show();
+//        AlertDialog.Builder builder =new AlertDialog(R.id.NavigationActivity.this))
+//        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//            .setAction("Action", null).show();
       }
     });
 
@@ -48,6 +52,34 @@ public class NavMenu extends AppCompatActivity
     PatientCardInfoPage patientCardInfoPage = new PatientCardInfoPage();
     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_nav_container, patientCardInfoPage).commit();
 
+  }
+
+  @Override
+  protected void onStart() {
+    super.onStart();
+    getHelper();
+  }
+
+  @Override
+  protected void onStop() {
+    releaseHelper();
+    super.onStop();
+  }
+
+  @Override
+  public synchronized OrmHelper getHelper() {
+
+    if (helper == null) {
+      helper = OpenHelperManager.getHelper(this, OrmHelper.class);
+    }
+    return helper;
+  }
+
+  public synchronized void releaseHelper() {
+    if (helper != null) {
+      OpenHelperManager.releaseHelper();
+      helper = null;
+    }
   }
 
   @Override

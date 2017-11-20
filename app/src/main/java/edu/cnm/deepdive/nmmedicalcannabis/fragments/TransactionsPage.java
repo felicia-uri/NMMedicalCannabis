@@ -1,82 +1,137 @@
 package edu.cnm.deepdive.nmmedicalcannabis.fragments;
 
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.stmt.QueryBuilder;
 import edu.cnm.deepdive.nmmedicalcannabis.R;
+import edu.cnm.deepdive.nmmedicalcannabis.activities.TransactionActivity;
+import edu.cnm.deepdive.nmmedicalcannabis.entities.TransactionDatabaseTable;
+import edu.cnm.deepdive.nmmedicalcannabis.helpers.OrmHelper.OrmInteraction;
+import java.sql.SQLException;
+import java.util.List;
 
 
-/**
- * A simple {@link Fragment} subclass. Activities that contain this fragment must implement the
- * {@link TransactionsPage.OnFragmentInteractionListener} interface to handle interaction events.
- * Use the {@link TransactionsPage#newInstance} factory method to create an instance of this
- * fragment.
- */
-public class TransactionsPage extends Fragment {
+public class TransactionsPage extends Fragment implements OnClickListener {
 
-  private OnFragmentInteractionListener mListener;
+  private AutoCompleteTextView dispensaryName;
+  private AutoCompleteTextView strainName;
+  private EditText gramsAmount;
+
+
 
   public TransactionsPage() {
     // Required empty public constructor
   }
 
-  /**
-   * Use this factory method to create a new instance of this fragment using the provided
-   * parameters.
-   *
-   * @param param1 Parameter 1.
-   * @param param2 Parameter 2.
-   * @return A new instance of fragment TransactionsPage.
-   */
-  // TODO: Rename and change types and number of parameters
-  public static TransactionsPage newInstance(String param1, String param2) {
-    TransactionsPage fragment = new TransactionsPage();
-    Bundle args = new Bundle();
-    return fragment;
-  }
-
-  @Override
-  public void onCreate(Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-  }
-
-  private void setContentView(int activity_recycler_view) {
-  }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
+
     // Inflate the layout for this fragment
-    return inflater.inflate(R.layout.fragment_new_transactions_page, container, false);
+    View inflate = inflater.inflate(R.layout.page_transactions_layout, container, false);
+    RecyclerView recyclerView = inflate.findViewById(R.id.recycler_view);
+    setupRecyclerView(recyclerView);
+
+    getActivity().findViewById(R.id.add_transaction_button).setOnClickListener(this);
+
+
+    return inflate;
+
   }
 
-  // TODO: Rename method, update argument and hook method into UI event
-  public void onButtonPressed(Uri uri) {
-    if (mListener != null) {
-      mListener.onFragmentInteraction(uri);
+  @Override
+  public void onClick(View v) {
+    NewTransactionDialog transactionDialog = new NewTransactionDialog();
+    transactionDialog.show(getActivity().getSupportFragmentManager(), "new transaction");
+
+  }
+
+
+  private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
+    try {
+      Dao<TransactionDatabaseTable, Integer> dao = ((OrmInteraction) getActivity()).getHelper().getTransactionsDao();
+      QueryBuilder<TransactionDatabaseTable, Integer> builder = dao.queryBuilder();
+      builder.orderBy("PURCHASED_DATE", false);
+      List<TransactionDatabaseTable> transactionDatabaseTables = dao.query(builder.prepare());
+      recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(transactionDatabaseTables));
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
     }
   }
 
+  public class SimpleItemRecyclerViewAdapter
+      extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-  @Override
-  public void onDetach() {
-    super.onDetach();
-    mListener = null;
-  }
+    private final List<TransactionDatabaseTable> mValues;
 
-  /**
-   * This interface must be implemented by activities that contain this fragment to allow an
-   * interaction in this fragment to be communicated to the activity and potentially other fragments
-   * contained in that activity. <p> See the Android Training lesson <a href=
-   * "http://developer.android.com/training/basics/fragments/communicating.html" >Communicating with
-   * Other Fragments</a> for more information.
-   */
-  public interface OnFragmentInteractionListener {
+    public SimpleItemRecyclerViewAdapter(List<TransactionDatabaseTable> items) {
+      mValues = items;
+    }
 
-    // TODO: Update argument type and name
-    void onFragmentInteraction(Uri uri);
+    @Override
+    public SimpleItemRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+      View view = LayoutInflater.from(parent.getContext())
+          .inflate(R.layout.transaction_cards, parent, false);
+
+      //TODO add view holder for patient card information
+//      View view1 = LayoutInflater.from(parent.getContext()).inflate()
+
+      return new SimpleItemRecyclerViewAdapter.ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(final SimpleItemRecyclerViewAdapter.ViewHolder holder, int position) {
+      holder.mItem = mValues.get(position);
+      holder.dispensary.setText(mValues.get(position).getPurchasedFrom());
+      holder.grams.setText(Integer.toString(mValues.get(position).getUnitsPurchased()));
+      holder.strain.setText(mValues.get(position).getStrainName());
+
+
+      holder.mView.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+//            Context context = v.getContext();
+//            Intent intent = new Intent(context, TransactionActivity.class);
+//            intent.putExtra(TransactionDatabaseTable.class, holder.mItem.getId());
+//            context.startActivity(intent);
+        }
+      });
+    }
+
+
+    @Override
+    public int getItemCount() {
+      return mValues.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+
+      public final View mView;
+      public final TextView dispensary;
+      public final TextView strain;
+      public final TextView grams;
+      public TransactionDatabaseTable mItem;
+
+      public ViewHolder(View view) {
+        super(view);
+        mView = view;
+        dispensary = (TextView) view.findViewById(R.id.dispensaryName);
+        strain = (TextView) view.findViewById(R.id.strainName);
+        grams = (TextView) view.findViewById(R.id.units_grams);
+      }
+    }
   }
 }

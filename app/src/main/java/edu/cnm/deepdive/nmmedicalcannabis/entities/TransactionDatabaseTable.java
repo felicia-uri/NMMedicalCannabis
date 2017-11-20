@@ -1,13 +1,12 @@
 package edu.cnm.deepdive.nmmedicalcannabis.entities;
 
-import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @DatabaseTable(tableName = "TRANSACTIONS")
-public class Transactions {
+public class TransactionDatabaseTable {
 
   @DatabaseField(columnName = "TRANSACTIONS_ID", generatedId = true)
   private int id;
@@ -15,6 +14,17 @@ public class Transactions {
   @DatabaseField(columnName = "CREATED", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP",
       format = "yyyy-MM-dd HH:mm:ss", canBeNull = false, readOnly = true)
   private Timestamp created;
+
+  public Date getPurchasedDate() {
+    return purchasedDate;
+  }
+
+  public void setPurchasedDate(Date purchasedDate) {
+    this.purchasedDate = purchasedDate;
+  }
+
+  @DatabaseField(columnName = "PURCHASED_DATE", format = "yyyy-MM-dd", canBeNull = false, index = true)
+  private Date purchasedDate;
 
   @DatabaseField(columnName = "UNITS_PURCHASED", canBeNull = false)
   private int unitsPurchased;
@@ -26,7 +36,7 @@ public class Transactions {
   private String strainName;
 
   @DatabaseField(columnName = "PATIENT_CARD_ID", canBeNull = false, foreign = true)
-  public PatientCard patientCard;
+  public PatientCardDatabaseTable mPatientCardDatabaseTable;
 
   public int getId() {
     return id;
@@ -68,24 +78,25 @@ public class Transactions {
     this.strainName = strainName;
   }
 
-  public PatientCard getPatientCard() {
-    return patientCard;
+  public PatientCardDatabaseTable getPatientCardDatabaseTable() {
+    return mPatientCardDatabaseTable;
   }
 
-  public void setPatientCard(
-      PatientCard patientCard) {
-    this.patientCard = patientCard;
+  public void setPatientCardDatabaseTable(
+      PatientCardDatabaseTable patientCardDatabaseTable) {
+    this.mPatientCardDatabaseTable = patientCardDatabaseTable;
   }
 
   @Override
   public String toString() {
-    return "Transactions{" +
+    return "TransactionDatabaseTable{" +
         "id=" + id +
         ", created=" + created +
+        ", purchased=" + purchasedDate +
         ", unitsPurchased=" + unitsPurchased +
         ", purchasedFrom='" + purchasedFrom + '\'' +
         ", strainName='" + strainName + '\'' +
-        ", patientCard=" + patientCard +
+        ", mPatientCardDatabaseTable=" + mPatientCardDatabaseTable +
         '}';
   }
 }

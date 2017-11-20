@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 import edu.cnm.deepdive.nmmedicalcannabis.R;
-import edu.cnm.deepdive.nmmedicalcannabis.entities.Transactions;
+import edu.cnm.deepdive.nmmedicalcannabis.entities.TransactionDatabaseTable;
 import edu.cnm.deepdive.nmmedicalcannabis.helpers.OrmHelper;
 import java.sql.SQLException;
 import java.util.List;
@@ -24,7 +24,7 @@ public class TransactionActivity extends AppCompatActivity implements OrmHelper.
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_recycler_view);
+    setContentView(R.layout.page_transactions_layout);
 
     RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
@@ -76,16 +76,20 @@ public class TransactionActivity extends AppCompatActivity implements OrmHelper.
   public class SimpleItemRecyclerViewAdapter
       extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-    private final List<Transactions> mValues;
+    private final List<TransactionDatabaseTable> mValues;
 
-    public SimpleItemRecyclerViewAdapter(List<Transactions> items) {
+    public SimpleItemRecyclerViewAdapter(List<TransactionDatabaseTable> items) {
       mValues = items;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
       View view = LayoutInflater.from(parent.getContext())
-          .inflate(R.layout.transaction_card_layout, parent, false);
+          .inflate(R.layout.transaction_cards, parent, false);
+
+      //TODO add view holder for patient card information
+//      View view1 = LayoutInflater.from(parent.getContext()).inflate()
+
       return new ViewHolder(view);
     }
 
@@ -96,12 +100,13 @@ public class TransactionActivity extends AppCompatActivity implements OrmHelper.
       holder.grams.setText(Integer.toString(mValues.get(position).getUnitsPurchased()));
       holder.strain.setText(mValues.get(position).getStrainName());
 
+
       holder.mView.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
 //            Context context = v.getContext();
 //            Intent intent = new Intent(context, TransactionActivity.class);
-//            intent.putExtra(Transactions.class, holder.mItem.getId());
+//            intent.putExtra(TransactionDatabaseTable.class, holder.mItem.getId());
 //            context.startActivity(intent);
         }
       });
@@ -119,7 +124,7 @@ public class TransactionActivity extends AppCompatActivity implements OrmHelper.
       public final TextView dispensary;
       public final TextView strain;
       public final TextView grams;
-      public Transactions mItem;
+      public TransactionDatabaseTable mItem;
 
       public ViewHolder(View view) {
         super(view);

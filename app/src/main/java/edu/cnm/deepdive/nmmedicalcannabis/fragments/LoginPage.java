@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
-import edu.cnm.deepdive.nmmedicalcannabis.navigation.NavMenu;
+import edu.cnm.deepdive.nmmedicalcannabis.activities.NavigationActivity;
 import edu.cnm.deepdive.nmmedicalcannabis.R;
 
 
@@ -27,7 +27,7 @@ public class LoginPage extends Fragment implements OnClickListener {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
     // Inflate the layout for this fragment
-    View inflate = inflater.inflate(R.layout.fragment_login_page, container, false);
+    View inflate = inflater.inflate(R.layout.login_page, container, false);
 
     loginButton = inflate.findViewById(R.id.buttonLogin);
     loginButton.setOnClickListener(this);
@@ -51,7 +51,7 @@ public class LoginPage extends Fragment implements OnClickListener {
 
   @Override
   public void onClick(View view) {
-    Intent intent = new Intent(getActivity(), NavMenu.class);
+    Intent intent = new Intent(getActivity(), NavigationActivity.class);
     startActivity(intent);
   }
 

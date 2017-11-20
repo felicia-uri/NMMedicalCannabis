@@ -20,7 +20,7 @@
     </activity>
     <activity
       android:label="@string/title_activity_nav_menu"
-      android:name=".navigation.NavMenu"
+      android:name=".activities.NavigationActivity"
       android:theme="@style/AppTheme.NoActionBar">
     </activity>
   </application>

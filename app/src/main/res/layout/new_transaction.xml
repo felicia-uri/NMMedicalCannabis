@@ -8,7 +8,7 @@
   tools:context="edu.cnm.deepdive.nmmedicalcannabis.fragments.TransactionsPage">
 
 
-  <!--New Transaction Text-->
+  <!--New TransactionDatabaseTable Text-->
   <TextView
     android:id="@+id/textTransactions"
     android:layout_width="wrap_content"
@@ -20,8 +20,8 @@
     app:layout_constraintLeft_toLeftOf="parent"
     app:layout_constraintRight_toRightOf="parent"
     app:layout_constraintHorizontal_bias="0.504"
-    android:layout_marginBottom="7dp"
-    android:layout_marginTop="8dp"
+    android:layout_marginBottom="3dp"
+    android:layout_marginTop="3dp"
     app:layout_constraintBottom_toTopOf="@+id/guideline4"
     app:layout_constraintTop_toTopOf="parent"/>
 
@@ -152,7 +152,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/guideline4"
-    app:layout_constraintGuide_begin="110dp"
+    app:layout_constraintGuide_begin="100dp"
     android:orientation="horizontal"/>
 
   <!--Middle guideline-->
@@ -165,7 +165,7 @@
 
   <!--Save button-->
   <Button
-    android:id="@+id/button"
+    android:id="@+id/save_new_transaction_button"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginBottom="16dp"

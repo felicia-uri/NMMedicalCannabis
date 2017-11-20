@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 @DatabaseTable(tableName = "PATIENT_CARD")
-public class PatientCard {
+public class PatientCardDatabaseTable {
 
   @DatabaseField(columnName = "CARD_ID", generatedId = true)
   private int id;
@@ -78,10 +78,10 @@ public class PatientCard {
 
   @Override
   public String toString() {
-    return "PatientCard{" +
+    return "PatientCardDatabaseTable{" +
         "id=" + id +
         ", created=" + created +
-        ", patientCard=" + cardID +
+        ", mPatientCardDatabaseTable=" + cardID +
         ", issueDate=" + issueDate +
         ", expDate=" + expDate +
         ", unitsAvailable=" + unitsAvailable +
