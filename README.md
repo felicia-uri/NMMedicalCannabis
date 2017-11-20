@@ -26,5 +26,8 @@ Units are determined as followed:
   3. Transaction History Page
      * Finish creating card layout to display each transaction made.
      * Each card view display fields entered from *New Transaction* page. (dispensary name, cannabis type, strain name, and grams purchased)
-  4. Stretch goal
+  4. Clean up code
+     * Need to add comments to code 
+     * Need to reformat code
+  5. Stretch goal
      * Transaction History page will show views base on category chosen. (i.e. strain name, dispensary name, etc)
