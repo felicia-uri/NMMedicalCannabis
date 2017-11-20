@@ -2,90 +2,160 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/fragment_transactions_page"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  android:id="@+id/fragment_transactions_page"
   tools:context="edu.cnm.deepdive.nmmedicalcannabis.fragments.TransactionsPage">
 
+
+  <!--New Transaction Text-->
+  <TextView
+    android:id="@+id/textTransactions"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="@string/text_new_transaction"
+    android:textAlignment="center"
+    android:textColor="@color/colorTextDark"
+    android:textSize="24sp"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintHorizontal_bias="0.504"
+    android:layout_marginBottom="7dp"
+    android:layout_marginTop="8dp"
+    app:layout_constraintBottom_toTopOf="@+id/guideline4"
+    app:layout_constraintTop_toTopOf="parent"/>
+
+  <!--Dispensary text-->
   <TextView
     android:id="@+id/textDispensary"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp"
-    android:layout_marginStart="16dp"
-    android:layout_marginLeft="16dp"
+    android:layout_marginLeft="24dp"
+    android:layout_marginRight="24dp"
     android:text="@string/text_dispensary_name"
     android:textColor="@color/colorTextDark"
-    android:textSize="24sp"
+    android:textSize="18sp"
+    app:layout_constraintHorizontal_bias="0.0"
     app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintTop_toTopOf="@+id/guideline5"
-    android:layout_marginRight="8dp"
-    app:layout_constraintRight_toRightOf="parent"/>
+    app:layout_constraintTop_toTopOf="@+id/guideline4"
+    app:layout_constraintRight_toLeftOf="@+id/autoCompleteDispensary"/>
+
+  <!--Flower text-->
+  <TextView
+    android:id="@+id/textFlower"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    android:layout_marginLeft="0dp"
+    android:layout_marginRight="16dp"
+    android:text="@string/text_cannabis_flower"
+    android:textAlignment="viewStart"
+    android:textAllCaps="false"
+    android:textColor="@color/colorTextDark"
+    android:textSize="18sp"
+    app:layout_constraintLeft_toLeftOf="@+id/textDispensary"
+    app:layout_constraintTop_toBottomOf="@+id/textDispensary"
+    app:layout_constraintRight_toLeftOf="@+id/checkboxFlower"
+    />
+
+  <!--Strain text-->
   <TextView
     android:id="@+id/textStrain"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:layout_marginStart="16dp"
-    android:layout_marginLeft="8dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginLeft="0dp"
     android:text="@string/text_strain_name"
     android:textColor="@color/colorTextDark"
-    android:textSize="15sp"
-    app:layout_constraintLeft_toLeftOf="@+id/textDispensary"
-    app:layout_constraintTop_toBottomOf="@+id/textView2"/>
-  <TextView
-    android:id="@+id/textUnitsGrams"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:layout_marginLeft="32dp"
-    android:text="@string/text_units_grams"
-    android:textColor="@color/colorTextDark"
-    android:textSize="15sp"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/textStrain"
-    android:layout_marginBottom="8dp"
-    app:layout_constraintBottom_toTopOf="@+id/guideline6"/>
-  <TextView
-    android:id="@+id/textTransactions"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="8dp"
-    android:text="@string/text_new_transaction"
-    android:textAlignment="center"
-    android:textColor="@color/colorTextDark"
-    android:textSize="24sp"
-    app:layout_constraintHorizontal_bias="0.502"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    android:layout_marginBottom="8dp"
-    app:layout_constraintBottom_toTopOf="@+id/guideline5"/>
+    android:textSize="18sp"
+    app:layout_constraintLeft_toLeftOf="@+id/textFlower"
+    app:layout_constraintTop_toBottomOf="@+id/textFlower"/>
 
+  <!--Grams text-->
   <TextView
-    android:id="@+id/textView2"
+    android:id="@+id/textGrams"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:fontFamily="serif"
-    android:text="@string/text_cannabis_flower"
-    android:textAlignment="textStart"
-    android:textAllCaps="false"
+    android:layout_marginTop="16dp"
+    android:layout_marginLeft="0dp"
+    android:fontFamily="sans-serif"
+    android:text="@string/text_grams"
     android:textColor="@color/colorTextDark"
     android:textSize="18sp"
-    android:layout_marginLeft="8dp"
-    app:layout_constraintLeft_toLeftOf="@+id/textDispensary"
-    android:layout_marginTop="8dp"
-    app:layout_constraintTop_toBottomOf="@+id/textDispensary"/>
+    app:layout_constraintLeft_toLeftOf="@+id/textStrain"
+    app:layout_constraintTop_toBottomOf="@+id/textStrain"
+    android:layout_marginBottom="16dp"
+    app:layout_constraintBottom_toTopOf="@+id/guideline5"
+    app:layout_constraintVertical_bias="0.0"/>
+
+  <!--Dispensary autocomplete text-->
+  <AutoCompleteTextView
+    android:id="@+id/autoCompleteDispensary"
+    android:layout_width="180dp"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="16dp"
+    android:ems="10"
+    android:completionHint="@string/autocomplete_dispensary"
+    android:popupBackground="@color/colorPrimary"
+    android:text="@string/autocomplete_dispensary"
+    android:textSize="18sp"
+    app:layout_constraintBaseline_toBaselineOf="@+id/textDispensary"
+    app:layout_constraintRight_toRightOf="parent"
+    tools:layout_editor_absoluteX="162dp"
+    tools:layout_editor_absoluteY="81dp"/>
+
+  <!--Flower checkbox-->
+  <CheckBox
+    android:id="@+id/checkboxFlower"
+    android:layout_width="180dp"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="16dp"
+    android:ems="10"
+    android:text="@string/checkbox"
+    android:textSize="18sp"
+    app:layout_constraintBaseline_toBaselineOf="@+id/textFlower"
+    app:layout_constraintRight_toRightOf="parent"/>
+
+  <!--Strain autocomplete text-->
+  <AutoCompleteTextView
+    android:id="@+id/autoCompleteStrain"
+    android:layout_width="180dp"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="16dp"
+    android:ems="10"
+    android:completionHint="@string/autocomplete_Strain"
+    android:text="@string/autocomplete_Strain"
+    app:layout_constraintBaseline_toBaselineOf="@+id/textStrain"
+    app:layout_constraintRight_toRightOf="parent"/>
+
+  <!--Number edit text-->
+  <EditText
+    android:id="@+id/editGramsNumber"
+    android:layout_width="180dp"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="16dp"
+    android:ems="10"
+    android:inputType="numberDecimal"
+    android:text="@string/editGramsNumber"
+    app:layout_constraintBaseline_toBaselineOf="@+id/textGrams"
+    app:layout_constraintRight_toRightOf="parent"/>
+
+  <!--Top guideline-->
+  <android.support.constraint.Guideline
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/guideline4"
+    app:layout_constraintGuide_begin="110dp"
+    android:orientation="horizontal"/>
+
+  <!--Middle guideline-->
   <android.support.constraint.Guideline
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/guideline5"
-    app:layout_constraintGuide_begin="76dp"
+    app:layout_constraintGuide_begin="303dp"
     android:orientation="horizontal"/>
-  <android.support.constraint.Guideline
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/guideline6"
-    app:layout_constraintGuide_begin="268dp"
-    android:orientation="horizontal"/>
+
+
 </android.support.constraint.ConstraintLayout>

@@ -5,14 +5,15 @@
   <!--textView-->
   <string name="text_create_account">No account yet? Create one</string>
   <string name="text_patient_id_card">Patient Identification Card</string>
-  <string name="text_card_id_number">Card ID Number</string>
-  <string name="text_issue_date">Issue Date</string>
-  <string name="text_exp_date">Expiration Date</string>
-  <string name="text_units_available">Units Available</string>
+  <string name="text_card_id_number">Card ID Number:</string>
+  <string name="text_issue_date">Issue Date:</string>
+  <string name="text_exp_date">Expiration Date:</string>
+  <string name="text_units_available">Units Available:</string>
   <string name="text_dispensary_name">Dispensary:</string>
   <string name="text_strain_name">Strain:</string>
   <string name="text_new_transaction">New Transactions</string>
-  <string name="text_units_grams">Units/Grams:</string>
+  <string name="text_grams">Grams:</string>
+  <string name="text_cannabis_flower">Flower:</string>
 
 
   <!--editText-->
@@ -39,7 +40,10 @@
   <string name="navigation_drawer_close">Close navigation drawer</string>
 
   <string name="action_settings">Settings</string>
-  <string name="text_cannabis_flower">Cannabis Flower</string>
+  <string name="checkbox">Check</string>
+  <string name="autocomplete_dispensary">Enter Dispensary</string>
+  <string name="autocomplete_Strain">Enter Strain Name</string>
+  <string name="editGramsNumber">Enter Grams Amount</string>
 
 
 </resources>
