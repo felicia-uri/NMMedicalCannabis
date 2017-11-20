@@ -95,15 +95,17 @@
     android:layout_width="180dp"
     android:layout_height="wrap_content"
     android:layout_marginRight="16dp"
-    android:ems="10"
     android:completionHint="@string/autocomplete_dispensary"
+    android:contentDescription="@string/autocomplete_dispensary"
+    android:ems="10"
+    android:hint="@string/autocomplete_dispensary"
     android:popupBackground="@color/colorPrimary"
-    android:text="@string/autocomplete_dispensary"
     android:textSize="18sp"
     app:layout_constraintBaseline_toBaselineOf="@+id/textDispensary"
     app:layout_constraintRight_toRightOf="parent"
     tools:layout_editor_absoluteX="162dp"
-    tools:layout_editor_absoluteY="81dp"/>
+    tools:layout_editor_absoluteY="81dp"
+    tools:text="@string/autocomplete_dispensary"/>
 
   <!--Flower checkbox-->
   <CheckBox
@@ -123,11 +125,13 @@
     android:layout_width="180dp"
     android:layout_height="wrap_content"
     android:layout_marginRight="16dp"
-    android:ems="10"
     android:completionHint="@string/autocomplete_Strain"
-    android:text="@string/autocomplete_Strain"
+    android:contentDescription="@string/autocomplete_Strain"
+    android:ems="10"
+    android:hint="@string/autocomplete_Strain"
     app:layout_constraintBaseline_toBaselineOf="@+id/textStrain"
-    app:layout_constraintRight_toRightOf="parent"/>
+    app:layout_constraintRight_toRightOf="parent"
+    tools:text="@string/autocomplete_Strain"/>
 
   <!--Number edit text-->
   <EditText
@@ -135,11 +139,13 @@
     android:layout_width="180dp"
     android:layout_height="wrap_content"
     android:layout_marginRight="16dp"
+    android:contentDescription="@string/editGramsNumber"
     android:ems="10"
+    android:hint="@string/editGramsNumber"
     android:inputType="numberDecimal"
-    android:text="@string/editGramsNumber"
     app:layout_constraintBaseline_toBaselineOf="@+id/textGrams"
-    app:layout_constraintRight_toRightOf="parent"/>
+    app:layout_constraintRight_toRightOf="parent"
+    tools:text="@string/editGramsNumber"/>
 
   <!--Top guideline-->
   <android.support.constraint.Guideline
@@ -156,6 +162,29 @@
     android:id="@+id/guideline5"
     app:layout_constraintGuide_begin="303dp"
     android:orientation="horizontal"/>
+
+  <!--Save button-->
+  <Button
+    android:id="@+id/button"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    android:text="@string/button_save_new_transaction"
+    app:layout_constraintBottom_toTopOf="@+id/guideline6"
+    app:layout_constraintHorizontal_bias="0.501"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toTopOf="@+id/guideline5"
+    app:layout_constraintVertical_bias="0.333"/>
+
+  <!--Bottom guideline-->
+  <android.support.constraint.Guideline
+    android:layout_width="127dp"
+    android:layout_height="wrap_content"
+    android:id="@+id/guideline6"
+    app:layout_constraintGuide_begin="371dp"
+    android:orientation="horizontal"/>
+
 
 
 </android.support.constraint.ConstraintLayout>

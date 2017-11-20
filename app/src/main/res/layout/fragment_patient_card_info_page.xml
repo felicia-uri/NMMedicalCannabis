@@ -154,7 +154,7 @@
     android:orientation="horizontal"/>
 
   <Button
-    android:id="@+id/button_save"
+    android:id="@+id/button_save_patient_id_page"
     android:layout_width="127dp"
     android:layout_height="wrap_content"
     android:layout_marginTop="16dp"

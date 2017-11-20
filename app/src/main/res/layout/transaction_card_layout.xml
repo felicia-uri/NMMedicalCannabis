@@ -18,10 +18,10 @@
       android:id="@+id/dispensaryName"
       android:layout_width="match_parent"
       android:layout_height="20dp"
-      android:background="@color/cardview_light_background"
+      android:background="@color/cardview_shadow_end_color"
       android:text="@string/text_dispensary_name"
       android:gravity="center_vertical"
-      android:textColor="@color/colorTextDark"
+      android:textColor="@color/colorTextLight"
       android:textSize="14dp"
       />
 

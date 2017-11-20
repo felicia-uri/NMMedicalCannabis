@@ -42,7 +42,7 @@ public class PatientCardInfoPage extends Fragment implements OnClickListener{
     // Inflate the layout for this fragment
     View inflate = inflater.inflate(R.layout.fragment_patient_card_info_page, container, false);
 
-    inflate.findViewById(R.id.button_save).setOnClickListener(this);
+    inflate.findViewById(R.id.button_save_patient_id_page).setOnClickListener(this);
     cardNumber = inflate.findViewById(R.id.editCardNumber);
     issueDate = inflate.findViewById(R.id.editIssueDate);
     expDate = inflate.findViewById(R.id.editExpDate);
