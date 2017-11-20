@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="Android SQLite" uuid="b5729285-2c68-4312-a24b-4ff320657d49">
+    <data-source source="LOCAL" name="Android SQLite" uuid="dfce52bc-e58a-4605-88cd-6d3f9ed9fa77">
       <driver-ref>sqlite.xerial</driver-ref>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:$USER_HOME$/Library/Caches/IntelliJIdea2017.2/android/databases/EMULATOR_Nexus_5X_API_22/edu.cnm.deepdive.nmmedicalcannabis/internal/medicalcannabis.db</jdbc-url>
@@ -13,11 +13,6 @@
           <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.16.1/xerial-sqlite-license.txt</url>
         </library>
       </libraries>
-    </data-source>
-    <data-source source="LOCAL" name="Android SQLite" uuid="d0bd8fc1-9f10-4290-9c80-a5e107fd82cd">
-      <driver-ref>sqlite.xerial</driver-ref>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$USER_HOME$/Library/Caches/IntelliJIdea2017.2/android/databases/EMULATOR_Nexus_5X_API_22/edu.cnm.deepdive.nmmedicalcannabis/internal/medicalcannabis.db</jdbc-url>
     </data-source>
   </component>
 </project>

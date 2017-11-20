@@ -27,6 +27,7 @@
   <string name="button_save">Save</string>
   <string name="button_login">Login</string>
   <string name="cancel_button">Cancel</string>
+  <string name="create_button">Create</string>
 
   <!--menuSettings-->
   <string name="menu_settings">Settings</string>

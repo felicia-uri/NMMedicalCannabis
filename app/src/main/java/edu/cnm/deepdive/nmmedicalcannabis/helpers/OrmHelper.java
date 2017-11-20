@@ -65,6 +65,7 @@ public class OrmHelper extends OrmLiteSqliteOpenHelper {
     Calendar calendar = Calendar.getInstance();
 
       PatientCardDatabaseTable patientCardDatabaseTable = new PatientCardDatabaseTable();
+      patientCardDatabaseTable.getCardID();
 //      patientCardDatabaseTable.setCardID();
 //      calendar.set(2017, 8, 9);
 //      patientCardDatabaseTable.setIssueDate(calendar.getTime());

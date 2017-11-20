@@ -164,26 +164,26 @@
     android:orientation="horizontal"/>
 
   <!--Save button-->
-  <Button
-    android:id="@+id/save_new_transaction_button"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginBottom="16dp"
-    android:text="@string/button_save_new_transaction"
-    app:layout_constraintBottom_toTopOf="@+id/guideline6"
-    app:layout_constraintHorizontal_bias="0.501"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintTop_toTopOf="@+id/guideline5"
-    app:layout_constraintVertical_bias="0.333"/>
+  <!--<Button-->
+    <!--android:id="@+id/save_new_transaction_button"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginBottom="16dp"-->
+    <!--android:text="@string/create_button"-->
+    <!--app:layout_constraintBottom_toTopOf="@+id/guideline6"-->
+    <!--app:layout_constraintHorizontal_bias="0.501"-->
+    <!--app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--app:layout_constraintRight_toRightOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="@+id/guideline5"-->
+    <!--app:layout_constraintVertical_bias="0.333"/>-->
 
   <!--Bottom guideline-->
-  <android.support.constraint.Guideline
-    android:layout_width="127dp"
-    android:layout_height="wrap_content"
-    android:id="@+id/guideline6"
-    app:layout_constraintGuide_begin="371dp"
-    android:orientation="horizontal"/>
+  <!--<android.support.constraint.Guideline-->
+    <!--android:layout_width="127dp"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:id="@+id/guideline6"-->
+    <!--app:layout_constraintGuide_begin="371dp"-->
+    <!--android:orientation="horizontal"/>-->
 
 
 
