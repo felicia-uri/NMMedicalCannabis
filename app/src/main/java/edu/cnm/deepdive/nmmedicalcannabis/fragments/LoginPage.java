@@ -26,12 +26,14 @@ public class LoginPage extends Fragment implements OnClickListener {
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    // Inflate the layout for this fragment
+    // Inflate the layout for login fragment
     View inflate = inflater.inflate(R.layout.login_page, container, false);
 
+    //Inflates loginButton and adds setonSetClickListener
     loginButton = inflate.findViewById(R.id.buttonLogin);
     loginButton.setOnClickListener(this);
 
+    //Creates login page
     return inflate;
   }
 

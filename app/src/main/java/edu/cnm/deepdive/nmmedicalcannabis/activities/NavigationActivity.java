@@ -23,15 +23,23 @@ public class NavigationActivity extends AppCompatActivity
   private OrmHelper helper;
 
   @Override
-  protected void onCreate(Bundle savedInstanceState) {
+  protected void onCreate(Bundle savedInstanceState) { //Preforms initialization of all fragments and loaders
 
-    super.onCreate(savedInstanceState);
-    setContentView(R.layout.navigation_drawer);
-    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-    setSupportActionBar(toolbar);
+    super.onCreate(savedInstanceState); //onCreate constructor
 
-    FloatingActionButton addtransaction = (FloatingActionButton) findViewById(R.id.add_transaction_button);
-    addtransaction.setOnClickListener(new View.OnClickListener() {
+    setContentView(R.layout.navigation_drawer); //calls navigation drawer view
+
+    Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);//calls toolbar
+    setSupportActionBar(toolbar); //Set toolbar to act as ActionBar for this Activity (NavagationAvtivity)
+
+    /**
+     * Creates floating action button instance
+     * Uses add_transaction_button ID
+     */
+    FloatingActionButton addTransactionButton = (FloatingActionButton) findViewById(R.id.add_transaction_button);
+
+    //
+    addTransactionButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
 //        AlertDialog.Builder builder =new AlertDialog(R.id.NavigationActivity.this))

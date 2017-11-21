@@ -11,7 +11,7 @@
   <string name="text_units_available">Units Available:</string>
   <string name="text_dispensary_name">Dispensary:</string>
   <string name="text_strain_name">Strain:</string>
-  <string name="text_new_transaction">New Transactions</string>
+  <string name="text_new_transaction">Transactions</string>
   <string name="text_grams">Grams:</string>
   <string name="text_cannabis_flower">Flower:</string>
 
@@ -35,21 +35,26 @@
 
   <!--menuMain-->
   <string name="menu_patient_card_info">Card Information</string>
-
   <string name="title_activity_nav_menu">nav_menu</string>
 
+  <!--navigationDrawer-->
   <string name="navigation_drawer_open">Open navigation drawer</string>
   <string name="navigation_drawer_close">Close navigation drawer</string>
 
   <string name="action_settings">Settings</string>
   <string name="checkbox">Check</string>
+
+  <!--newTransactionDialog-->
   <string name="autocomplete_dispensary">Enter Dispensary</string>
   <string name="autocomplete_Strain">Enter Strain Name</string>
   <string name="editGramsNumber">Enter Grams Amount</string>
   <string name="button_save_new_transaction">Save</string>
 
-  <!-- TODO: Remove or change this placeholder text -->
-  <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string-array name="product_type_array">
+    <item>Flower</item>
+    <item>Concentrate</item>
+    <item>Edible</item>
+  </string-array>
 
 
 </resources>

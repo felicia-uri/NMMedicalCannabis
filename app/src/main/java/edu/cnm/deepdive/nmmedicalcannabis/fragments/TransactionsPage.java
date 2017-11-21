@@ -2,7 +2,6 @@ package edu.cnm.deepdive.nmmedicalcannabis.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,14 +9,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.stmt.QueryBuilder;
 import edu.cnm.deepdive.nmmedicalcannabis.R;
-import edu.cnm.deepdive.nmmedicalcannabis.activities.TransactionActivity;
-import edu.cnm.deepdive.nmmedicalcannabis.entities.TransactionDatabaseTable;
+import edu.cnm.deepdive.nmmedicalcannabis.entities.TransactionDatabase;
+import edu.cnm.deepdive.nmmedicalcannabis.fragments.NewTransactionDialog.Callback;
 import edu.cnm.deepdive.nmmedicalcannabis.helpers.OrmHelper.OrmInteraction;
 import java.sql.SQLException;
 import java.util.List;
@@ -29,6 +27,7 @@ public class TransactionsPage extends Fragment implements OnClickListener {
   private AutoCompleteTextView strainName;
   private EditText gramsAmount;
 
+  private RecyclerView recyclerView;
 
 
   public TransactionsPage() {
@@ -42,7 +41,7 @@ public class TransactionsPage extends Fragment implements OnClickListener {
 
     // Inflate the layout for this fragment
     View inflate = inflater.inflate(R.layout.page_transactions_layout, container, false);
-    RecyclerView recyclerView = inflate.findViewById(R.id.recycler_view);
+    recyclerView = inflate.findViewById(R.id.recycler_view);
     setupRecyclerView(recyclerView);
 
     getActivity().findViewById(R.id.add_transaction_button).setOnClickListener(this);
@@ -54,7 +53,14 @@ public class TransactionsPage extends Fragment implements OnClickListener {
 
   @Override
   public void onClick(View v) {
+
     NewTransactionDialog transactionDialog = new NewTransactionDialog();
+    transactionDialog.setCallback(new Callback() {
+      @Override
+      public void refreshList() {
+        setupRecyclerView(recyclerView);
+      }
+    });
     transactionDialog.show(getActivity().getSupportFragmentManager(), "new transaction");
 
   }
@@ -62,11 +68,11 @@ public class TransactionsPage extends Fragment implements OnClickListener {
 
   private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
     try {
-      Dao<TransactionDatabaseTable, Integer> dao = ((OrmInteraction) getActivity()).getHelper().getTransactionsDao();
-      QueryBuilder<TransactionDatabaseTable, Integer> builder = dao.queryBuilder();
+      Dao<TransactionDatabase, Integer> dao = ((OrmInteraction) getActivity()).getHelper().getTransactionsDao();
+      QueryBuilder<TransactionDatabase, Integer> builder = dao.queryBuilder();
       builder.orderBy("PURCHASED_DATE", false);
-      List<TransactionDatabaseTable> transactionDatabaseTables = dao.query(builder.prepare());
-      recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(transactionDatabaseTables));
+      List<TransactionDatabase> transactionDatabases = dao.query(builder.prepare());
+      recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(transactionDatabases));
     } catch (SQLException e) {
       throw new RuntimeException(e);
     }
@@ -75,9 +81,9 @@ public class TransactionsPage extends Fragment implements OnClickListener {
   public class SimpleItemRecyclerViewAdapter
       extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-    private final List<TransactionDatabaseTable> mValues;
+    private final List<TransactionDatabase> mValues;
 
-    public SimpleItemRecyclerViewAdapter(List<TransactionDatabaseTable> items) {
+    public SimpleItemRecyclerViewAdapter(List<TransactionDatabase> items) {
       mValues = items;
     }
 
@@ -105,7 +111,7 @@ public class TransactionsPage extends Fragment implements OnClickListener {
         public void onClick(View v) {
 //            Context context = v.getContext();
 //            Intent intent = new Intent(context, TransactionActivity.class);
-//            intent.putExtra(TransactionDatabaseTable.class, holder.mItem.getId());
+//            intent.putExtra(TransactionDatabase.class, holder.mItem.getId());
 //            context.startActivity(intent);
         }
       });
@@ -123,7 +129,7 @@ public class TransactionsPage extends Fragment implements OnClickListener {
       public final TextView dispensary;
       public final TextView strain;
       public final TextView grams;
-      public TransactionDatabaseTable mItem;
+      public TransactionDatabase mItem;
 
       public ViewHolder(View view) {
         super(view);

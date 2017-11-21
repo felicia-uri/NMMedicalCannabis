@@ -6,7 +6,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 @DatabaseTable(tableName = "TRANSACTIONS")
-public class TransactionDatabaseTable {
+public class TransactionDatabase {
 
   @DatabaseField(columnName = "TRANSACTIONS_ID", generatedId = true)
   private int id;
@@ -15,15 +15,7 @@ public class TransactionDatabaseTable {
       format = "yyyy-MM-dd HH:mm:ss", canBeNull = false, readOnly = true)
   private Timestamp created;
 
-  public Date getPurchasedDate() {
-    return purchasedDate;
-  }
-
-  public void setPurchasedDate(Date purchasedDate) {
-    this.purchasedDate = purchasedDate;
-  }
-
-  @DatabaseField(columnName = "PURCHASED_DATE", format = "yyyy-MM-dd", canBeNull = false, index = true)
+  @DatabaseField(columnName = "PURCHASED_DATE", format = "yyyy-MM-dd", canBeNull = true, index = true)
   private Date purchasedDate;
 
   @DatabaseField(columnName = "UNITS_PURCHASED", canBeNull = false)
@@ -35,8 +27,24 @@ public class TransactionDatabaseTable {
   @DatabaseField(columnName = "STRAIN_NAME", canBeNull = true)
   private String strainName;
 
-  @DatabaseField(columnName = "PATIENT_CARD_ID", canBeNull = false, foreign = true)
-  public PatientCardDatabaseTable mPatientCardDatabaseTable;
+  @DatabaseField(columnName = "PRODUCT_TYPE", canBeNull = false)
+  private String productType;
+
+  public String getProductType() {
+    return productType;
+  }
+
+  public void setProductType(String productType) {
+    this.productType = productType;
+  }
+
+  public Date getPurchasedDate() {
+    return purchasedDate;
+  }
+
+  public void setPurchasedDate(Date purchasedDate) {
+    this.purchasedDate = purchasedDate;
+  }
 
   public int getId() {
     return id;
@@ -78,25 +86,17 @@ public class TransactionDatabaseTable {
     this.strainName = strainName;
   }
 
-  public PatientCardDatabaseTable getPatientCardDatabaseTable() {
-    return mPatientCardDatabaseTable;
-  }
-
-  public void setPatientCardDatabaseTable(
-      PatientCardDatabaseTable patientCardDatabaseTable) {
-    this.mPatientCardDatabaseTable = patientCardDatabaseTable;
-  }
 
   @Override
   public String toString() {
-    return "TransactionDatabaseTable{" +
+    return "TransactionDatabase{" +
         "id=" + id +
         ", created=" + created +
         ", purchased=" + purchasedDate +
         ", unitsPurchased=" + unitsPurchased +
+        ", productType=" + productType +
         ", purchasedFrom='" + purchasedFrom + '\'' +
         ", strainName='" + strainName + '\'' +
-        ", mPatientCardDatabaseTable=" + mPatientCardDatabaseTable +
         '}';
   }
 }
