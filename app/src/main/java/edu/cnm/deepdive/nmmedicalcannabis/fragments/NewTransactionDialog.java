@@ -11,20 +11,24 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
 import edu.cnm.deepdive.nmmedicalcannabis.R;
 import edu.cnm.deepdive.nmmedicalcannabis.entities.ProductType;
+import edu.cnm.deepdive.nmmedicalcannabis.entities.SubTransaction;
 import edu.cnm.deepdive.nmmedicalcannabis.entities.TransactionDatabase;
 import edu.cnm.deepdive.nmmedicalcannabis.helpers.OrmHelper.OrmInteraction;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewTransactionDialog extends DialogFragment {
-
+public class NewTransactionDialog extends DialogFragment implements View.OnClickListener {
 
   public static final String PATIENT_CARD_ID = "patientCardId";
   private Callback callback;
+  private ListView transactionList;
+  private List<SubTransaction> transactionListModel;
+  private Spinner spinner;
 
   public NewTransactionDialog() {
 
@@ -50,6 +54,9 @@ public class NewTransactionDialog extends DialogFragment {
     final AutoCompleteTextView strain = inflate.findViewById(R.id.autoCompleteStrain);
     final EditText grams = inflate.findViewById(R.id.editGramsNumber);
 
+    transactionList = inflate.findViewById(R.id.listViewNewTransactions);
+    inflate.findViewById(R.id.add_subtransaction_button);
+
     List<ProductType> types = new ArrayList<>();
 
     try {
@@ -58,9 +65,8 @@ public class NewTransactionDialog extends DialogFragment {
       e.printStackTrace();
     }
 
-    Spinner spinner = inflate.findViewById(R.id.typeSpinner);
-    ArrayAdapter<ProductType> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, types);
-    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    spinner = inflate.findViewById(R.id.typeSpinner);
+    ArrayAdapter<ProductType> adapter = new ArrayAdapter<ProductType>(getContext(), R.layout.support_simple_spinner_dropdown_item, types);
     spinner.setAdapter(adapter);
 
     //Setter methods to set the dialog characteristics
@@ -102,8 +108,17 @@ public class NewTransactionDialog extends DialogFragment {
     return builder.create();
   }
 
+  @Override
+  public void onClick(View v) {
+    SubTransaction subTransaction = new SubTransaction();
+    subTransaction.setProductType((ProductType) spinner.getSelectedItem());
+    subTransaction.setStrain((String) spinner.getSelectedItem());
+    subTransaction.setGrams((Double) spinner.getSelectedItem());
+
   public interface Callback {
     void refreshList();
   }
+
+
 }
 
