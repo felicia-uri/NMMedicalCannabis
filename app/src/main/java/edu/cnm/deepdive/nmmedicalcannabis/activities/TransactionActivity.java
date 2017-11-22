@@ -96,8 +96,6 @@ public class TransactionActivity extends AppCompatActivity implements OrmHelper.
     public void onBindViewHolder(final ViewHolder holder, int position) {
       holder.mItem = mValues.get(position);
       holder.dispensary.setText(mValues.get(position).getPurchasedFrom());
-      holder.grams.setText(Integer.toString(mValues.get(position).getUnitsPurchased()));
-      holder.strain.setText(mValues.get(position).getStrainName());
 
       holder.mView.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -116,8 +114,7 @@ public class TransactionActivity extends AppCompatActivity implements OrmHelper.
 
       public final View mView;
       public final TextView dispensary;
-      public final TextView strain;
-      public final TextView grams;
+
 //      public final
       public TransactionDatabase mItem;
 
@@ -125,8 +122,6 @@ public class TransactionActivity extends AppCompatActivity implements OrmHelper.
         super(view);
         mView = view;
         dispensary = (TextView) view.findViewById(R.id.dispensaryName);
-        strain = (TextView) view.findViewById(R.id.strainName);
-        grams = (TextView) view.findViewById(R.id.units_grams);
       }
     }
   }

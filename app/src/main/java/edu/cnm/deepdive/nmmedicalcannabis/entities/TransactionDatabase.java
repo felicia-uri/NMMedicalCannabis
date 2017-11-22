@@ -1,6 +1,8 @@
 package edu.cnm.deepdive.nmmedicalcannabis.entities;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 import java.sql.Timestamp;
 import java.util.Date;
@@ -18,25 +20,11 @@ public class TransactionDatabase {
   @DatabaseField(columnName = "PURCHASED_DATE", format = "yyyy-MM-dd", canBeNull = true, index = true)
   private Date purchasedDate;
 
-  @DatabaseField(columnName = "UNITS_PURCHASED", canBeNull = false)
-  private int unitsPurchased;
-
   @DatabaseField(columnName = "PURCHASED_FROM", canBeNull = true)
   private String purchasedFrom;
 
-  @DatabaseField(columnName = "STRAIN_NAME", canBeNull = true)
-  private String strainName;
-
-  @DatabaseField(columnName = "PRODUCT_TYPE", canBeNull = false)
-  private String productType;
-
-  public String getProductType() {
-    return productType;
-  }
-
-  public void setProductType(String productType) {
-    this.productType = productType;
-  }
+  @ForeignCollectionField
+  private ForeignCollection<SubTransaction> subTransaction;
 
   public Date getPurchasedDate() {
     return purchasedDate;
@@ -62,14 +50,6 @@ public class TransactionDatabase {
     this.created = created;
   }
 
-  public int getUnitsPurchased() {
-    return unitsPurchased;
-  }
-
-  public void setUnitsPurchased(int unitsPurchased) {
-    this.unitsPurchased = unitsPurchased;
-  }
-
   public String getPurchasedFrom() {
     return purchasedFrom;
   }
@@ -78,25 +58,22 @@ public class TransactionDatabase {
     this.purchasedFrom = purchasedFrom;
   }
 
-  public String getStrainName() {
-    return strainName;
+  public ForeignCollection<SubTransaction> getSubTransaction() {
+    return subTransaction;
   }
 
-  public void setStrainName(String strainName) {
-    this.strainName = strainName;
+  public void setSubTransaction(
+      ForeignCollection<SubTransaction> subTransaction) {
+    this.subTransaction = subTransaction;
   }
-
 
   @Override
   public String toString() {
     return "TransactionDatabase{" +
         "id=" + id +
-        ", created=" + created +
-        ", purchased=" + purchasedDate +
-        ", unitsPurchased=" + unitsPurchased +
-        ", productType=" + productType +
-        ", purchasedFrom='" + purchasedFrom + '\'' +
-        ", strainName='" + strainName + '\'' +
+        ", created =" + created +
+        ", purchased =" + purchasedDate +
+        ", purchasedFrom ='" + purchasedFrom + '\'' +
         '}';
   }
 }

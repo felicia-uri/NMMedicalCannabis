@@ -18,51 +18,25 @@
       android:id="@+id/dispensaryName"
       android:layout_width="match_parent"
       android:layout_height="20dp"
-      android:background="@color/cardview_shadow_end_color"
-      android:text="@string/text_dispensary_name"
-      android:gravity="center_vertical"
-      android:textColor="@color/colorTextLight"
-      android:textSize="18dp"
       android:layout_marginTop="5dp"
-      android:layout_marginLeft="5dp"/>
-
-    <TextView
-      android:id="@+id/cannabisFlower"
+      android:layout_marginLeft="5dp"
+      android:background="@color/cardview_shadow_end_color"
+      android:gravity="center_vertical"
+      android:text="@string/text_dispensary_name"
       android:textColor="@color/colorTextLight"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/text_cannabis_flower"
-      android:gravity="center_vertical"
-      android:textSize="14dp"
-      android:layout_below="@id/dispensaryName"
-      android:layout_marginTop="10dp"
-      android:layout_marginLeft="5dp"/>
+      android:textSize="18dp"/>
 
     <TextView
-      android:id="@+id/strainName"
-      android:layout_width="wrap_content"
+      android:id="@+id/purchaseDateCardView"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="@string/text_strain_name"
-      android:gravity="center_vertical"
-      android:textSize="14dp"
-      android:layout_below="@id/cannabisFlower"
-      android:layout_marginTop="10dp"
-      android:layout_marginLeft="5dp"
+      android:text="Purchased Date:"
       android:textColor="@color/colorTextLight"/>
 
-    <TextView
-      android:id="@+id/units_grams"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="@string/text_grams"
-      android:textSize="14dp"
-      android:layout_marginTop="10dp"
-      android:layout_alignParentRight="true"
-      android:layout_marginRight="150dp"
-      android:layout_marginLeft="5dp"
-      android:layout_alignBaseline="@id/dispensaryName"
-      android:textColor="@color/colorTextLight"/>
-
+    <ListView
+      android:id="@+id/cardList"
+      android:layout_width="match_parent"
+      android:layout_height="100dp"/>
 
 
   </LinearLayout>

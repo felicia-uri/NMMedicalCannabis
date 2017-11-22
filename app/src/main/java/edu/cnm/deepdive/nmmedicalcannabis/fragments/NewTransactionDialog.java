@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import edu.cnm.deepdive.nmmedicalcannabis.R;
@@ -19,16 +20,22 @@ import edu.cnm.deepdive.nmmedicalcannabis.entities.SubTransaction;
 import edu.cnm.deepdive.nmmedicalcannabis.entities.TransactionDatabase;
 import edu.cnm.deepdive.nmmedicalcannabis.helpers.OrmHelper.OrmInteraction;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class NewTransactionDialog extends DialogFragment implements View.OnClickListener {
 
   public static final String PATIENT_CARD_ID = "patientCardId";
   private Callback callback;
   private ListView transactionList;
-  private List<SubTransaction> transactionListModel;
+  private List<SubTransaction> transactionListModel = new ArrayList<>();
   private Spinner spinner;
+  private AutoCompleteTextView strain;
+  private EditText grams;
+  private EditText date;
 
   public NewTransactionDialog() {
 
@@ -66,6 +73,12 @@ public class NewTransactionDialog extends DialogFragment implements View.OnClick
     }
 
     spinner = inflate.findViewById(R.id.typeSpinner);
+    this.strain = inflate.findViewById(R.id.autoCompleteStrain);
+    this.grams = inflate.findViewById(R.id.editGramsNumber);
+    date = inflate.findViewById(R.id.calendarEdit);
+
+    inflate.findViewById(R.id.add_subtransaction_button).setOnClickListener(this);
+
     ArrayAdapter<ProductType> adapter = new ArrayAdapter<ProductType>(getContext(), R.layout.support_simple_spinner_dropdown_item, types);
     spinner.setAdapter(adapter);
 
@@ -79,13 +92,21 @@ public class NewTransactionDialog extends DialogFragment implements View.OnClick
       public void onClick(DialogInterface dialog, int which) {
         TransactionDatabase transactionDatabase = new TransactionDatabase();
         transactionDatabase.setPurchasedFrom(dispensary.getText().toString());
-        transactionDatabase.setStrainName(strain.getText().toString());
-        transactionDatabase.setUnitsPurchased(Integer.parseInt(grams.getText().toString()));
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+        try {
+          transactionDatabase.setPurchasedDate(simpleDateFormat.parse(date.getText().toString()));
+        } catch (ParseException e) {
+          e.printStackTrace();
+        }
 
         //Uses Orm helper to add user input to database
         try {
           ((OrmInteraction)getActivity()).getHelper().getTransactionsDao().create(
               transactionDatabase);
+          for (int i = 0; i < transactionListModel.size(); i++) {
+            transactionListModel.get(i).setTransactionDatabase(transactionDatabase);
+            ((OrmInteraction)getActivity()).getHelper().getSubTransactionsDao().create(transactionListModel.get(i));
+          }
           if (callback != null) {
             callback.refreshList();
           }
@@ -112,13 +133,17 @@ public class NewTransactionDialog extends DialogFragment implements View.OnClick
   public void onClick(View v) {
     SubTransaction subTransaction = new SubTransaction();
     subTransaction.setProductType((ProductType) spinner.getSelectedItem());
-    subTransaction.setStrain((String) spinner.getSelectedItem());
-    subTransaction.setGrams((Double) spinner.getSelectedItem());
+    subTransaction.setStrain(strain.getText().toString());
+    subTransaction.setGrams(Double.parseDouble(grams.getText().toString()));
+
+    transactionListModel.add(subTransaction);
+    ArrayAdapter arrayAdapter = new ArrayAdapter<SubTransaction>(getContext(), android.R.layout.simple_list_item_1, transactionListModel);
+    transactionList.setAdapter(arrayAdapter);
+
+  }
 
   public interface Callback {
     void refreshList();
   }
-
-
 }
 

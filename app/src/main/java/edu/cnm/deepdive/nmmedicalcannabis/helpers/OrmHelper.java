@@ -8,6 +8,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import edu.cnm.deepdive.nmmedicalcannabis.entities.CardDatabase;
 import edu.cnm.deepdive.nmmedicalcannabis.entities.ProductType;
+import edu.cnm.deepdive.nmmedicalcannabis.entities.SubTransaction;
 import edu.cnm.deepdive.nmmedicalcannabis.entities.TransactionDatabase;
 import java.sql.SQLException;
 import java.util.Calendar;
@@ -20,6 +21,7 @@ public class OrmHelper extends OrmLiteSqliteOpenHelper {
   private Dao<CardDatabase, Integer> patientCardDao = null;
   private Dao<TransactionDatabase, Integer> transactionsDao = null;
   private Dao<ProductType, Integer> productTypeDao;
+  private Dao<SubTransaction, Integer> subTransactionsDao;
 
   public OrmHelper(Context context) {
     super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -31,6 +33,7 @@ public class OrmHelper extends OrmLiteSqliteOpenHelper {
       TableUtils.createTable(connectionSource,CardDatabase.class);
       TableUtils.createTable(connectionSource, TransactionDatabase.class);
       TableUtils.createTable(connectionSource, ProductType.class);
+      TableUtils.createTable(connectionSource, SubTransaction.class);
       populateDatabase();
     } catch (SQLException e) {
       throw new RuntimeException(e);
@@ -69,6 +72,13 @@ public class OrmHelper extends OrmLiteSqliteOpenHelper {
     }
     return productTypeDao;
 
+  }
+
+  public synchronized Dao<SubTransaction, Integer> getSubTransactionsDao() throws SQLException {
+    if (subTransactionsDao == null) {
+      subTransactionsDao = getDao(SubTransaction.class);
+    }
+    return subTransactionsDao;
   }
 
   private void populateDatabase() throws SQLException {

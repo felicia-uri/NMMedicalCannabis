@@ -8,16 +8,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.stmt.QueryBuilder;
 import edu.cnm.deepdive.nmmedicalcannabis.R;
+import edu.cnm.deepdive.nmmedicalcannabis.entities.SubTransaction;
 import edu.cnm.deepdive.nmmedicalcannabis.entities.TransactionDatabase;
 import edu.cnm.deepdive.nmmedicalcannabis.fragments.NewTransactionDialog.Callback;
 import edu.cnm.deepdive.nmmedicalcannabis.helpers.OrmHelper.OrmInteraction;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -102,9 +108,13 @@ public class TransactionsPage extends Fragment implements OnClickListener {
     public void onBindViewHolder(final SimpleItemRecyclerViewAdapter.ViewHolder holder, int position) {
       holder.mItem = mValues.get(position);
       holder.dispensary.setText(mValues.get(position).getPurchasedFrom());
-      holder.grams.setText(Integer.toString(mValues.get(position).getUnitsPurchased()));
-      holder.strain.setText(mValues.get(position).getStrainName());
+      SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+      holder.purchasedDate.setText(simpleDateFormat.format(mValues.get(position).getPurchasedDate()));
 
+      ForeignCollection<SubTransaction> subTransaction = mValues.get(position).getSubTransaction();
+      ArrayAdapter<SubTransaction> arrayAdapter = new ArrayAdapter<SubTransaction>(getContext(),
+          android.R.layout.simple_list_item_1, new ArrayList<SubTransaction>(subTransaction));
+      holder.cardList.setAdapter(arrayAdapter);
 
       holder.mView.setOnClickListener(new View.OnClickListener() {
         @Override
@@ -127,16 +137,16 @@ public class TransactionsPage extends Fragment implements OnClickListener {
 
       public final View mView;
       public final TextView dispensary;
-      public final TextView strain;
-      public final TextView grams;
+      public final TextView purchasedDate;
+      public final ListView cardList;
       public TransactionDatabase mItem;
 
       public ViewHolder(View view) {
         super(view);
         mView = view;
         dispensary = (TextView) view.findViewById(R.id.dispensaryName);
-        strain = (TextView) view.findViewById(R.id.strainName);
-        grams = (TextView) view.findViewById(R.id.units_grams);
+        purchasedDate = view.findViewById(R.id.purchaseDateCardView);
+        cardList = view.findViewById(R.id.cardList);
       }
     }
   }
