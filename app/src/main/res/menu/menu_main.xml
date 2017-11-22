@@ -2,11 +2,13 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:android="http://schemas.android.com/apk/res/android">
 
-
   <group android:checkableBehavior="single">
     <item
-      android:id="@+id/patient_card_info_page"
+      android:id="@+id/menu_patient_card_info_page"
       android:title="@string/menu_patient_card_info"/>
+    <item
+      android:id="@+id/menu_transactions_page"
+      android:title="@string/text_new_transaction"/>
   </group>
 
 </menu>

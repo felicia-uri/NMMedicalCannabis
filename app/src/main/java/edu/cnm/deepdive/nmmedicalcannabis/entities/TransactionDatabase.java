@@ -5,9 +5,10 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 import java.sql.Timestamp;
+import java.util.Date;
 
 @DatabaseTable(tableName = "TRANSACTIONS")
-public class Transactions {
+public class TransactionDatabase {
 
   @DatabaseField(columnName = "TRANSACTIONS_ID", generatedId = true)
   private int id;
@@ -16,17 +17,22 @@ public class Transactions {
       format = "yyyy-MM-dd HH:mm:ss", canBeNull = false, readOnly = true)
   private Timestamp created;
 
-  @DatabaseField(columnName = "UNITS_PURCHASED", canBeNull = false)
-  private int unitsPurchased;
+  @DatabaseField(columnName = "PURCHASED_DATE", format = "yyyy-MM-dd", canBeNull = true, index = true)
+  private Date purchasedDate;
 
   @DatabaseField(columnName = "PURCHASED_FROM", canBeNull = true)
   private String purchasedFrom;
 
-  @DatabaseField(columnName = "STRAIN_NAME", canBeNull = true)
-  private String strainName;
+  @ForeignCollectionField
+  private ForeignCollection<SubTransaction> subTransaction;
 
-  @DatabaseField(columnName = "PATIENT_CARD_ID", canBeNull = false, foreign = true)
-  public PatientCard patientCard;
+  public Date getPurchasedDate() {
+    return purchasedDate;
+  }
+
+  public void setPurchasedDate(Date purchasedDate) {
+    this.purchasedDate = purchasedDate;
+  }
 
   public int getId() {
     return id;
@@ -44,14 +50,6 @@ public class Transactions {
     this.created = created;
   }
 
-  public int getUnitsPurchased() {
-    return unitsPurchased;
-  }
-
-  public void setUnitsPurchased(int unitsPurchased) {
-    this.unitsPurchased = unitsPurchased;
-  }
-
   public String getPurchasedFrom() {
     return purchasedFrom;
   }
@@ -60,32 +58,22 @@ public class Transactions {
     this.purchasedFrom = purchasedFrom;
   }
 
-  public String getStrainName() {
-    return strainName;
+  public ForeignCollection<SubTransaction> getSubTransaction() {
+    return subTransaction;
   }
 
-  public void setStrainName(String strainName) {
-    this.strainName = strainName;
-  }
-
-  public PatientCard getPatientCard() {
-    return patientCard;
-  }
-
-  public void setPatientCard(
-      PatientCard patientCard) {
-    this.patientCard = patientCard;
+  public void setSubTransaction(
+      ForeignCollection<SubTransaction> subTransaction) {
+    this.subTransaction = subTransaction;
   }
 
   @Override
   public String toString() {
-    return "Transactions{" +
+    return "TransactionDatabase{" +
         "id=" + id +
-        ", created=" + created +
-        ", unitsPurchased=" + unitsPurchased +
-        ", purchasedFrom='" + purchasedFrom + '\'' +
-        ", strainName='" + strainName + '\'' +
-        ", patientCard=" + patientCard +
+        ", created =" + created +
+        ", purchased =" + purchasedDate +
+        ", purchasedFrom ='" + purchasedFrom + '\'' +
         '}';
   }
 }

@@ -12,6 +12,25 @@
   android:background="@drawable/side_nav_bar"
   android:gravity="bottom"
   android:orientation="vertical"
-  android:theme="@style/ThemeOverlay.AppCompat.Dark">
+  android:theme="@style/ThemeOverlay.AppCompat.Dark"
+  android:weightSum="1">
+
+  <ImageView
+    android:id="@+id/imageView"
+    android:layout_width="79dp"
+    android:layout_height="57dp"
+    android:paddingTop="@dimen/nav_header_vertical_spacing"
+    app:srcCompat="@drawable/nm_zia_icon"
+    android:layout_weight="0.40"/>
+
+  <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/nav_header_vertical_spacing"
+    android:text="@string/app_name"
+    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+    tools:ignore="HardcodedText"/>
+
+
 
 </LinearLayout>
