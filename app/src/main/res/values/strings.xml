@@ -46,9 +46,12 @@
 
   <!--newTransactionDialog-->
   <string name="autocomplete_dispensary">Enter Dispensary</string>
-  <string name="autocomplete_Strain">Enter Strain Name</string>
-  <string name="editGramsNumber">Enter Grams Amount</string>
+  <string name="autocomplete_Strain">Strain Name</string>
+  <string name="editGramsNumber">Grams</string>
   <string name="button_save_new_transaction">Save</string>
+  <string name="purchase_date">Purchase Date:</string>
+  <string name="purchased_date_dialog">Date</string>
+
 
   <string-array name="product_type_array">
     <item>Flower</item>

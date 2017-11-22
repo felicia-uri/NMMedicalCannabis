@@ -59,7 +59,8 @@ public class NewTransactionDialog extends DialogFragment {
     }
 
     Spinner spinner = inflate.findViewById(R.id.typeSpinner);
-    ArrayAdapter<ProductType> adapter = new ArrayAdapter<ProductType>(getContext(), R.layout.support_simple_spinner_dropdown_item, types);
+    ArrayAdapter<ProductType> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, types);
+    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     spinner.setAdapter(adapter);
 
     //Setter methods to set the dialog characteristics
