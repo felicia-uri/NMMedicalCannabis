@@ -18,18 +18,22 @@ import edu.cnm.deepdive.nmmedicalcannabis.helpers.OrmHelper;
 import java.sql.SQLException;
 import java.util.List;
 
+/**
+ * Creates fragment view for transaction history.
+ */
 public class TransactionActivity extends AppCompatActivity implements OrmHelper.OrmInteraction {
+
 
   private OrmHelper helper = null;
 
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+
     super.onCreate(savedInstanceState);
     setContentView(R.layout.page_transactions_layout);
 
     RecyclerView mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-
     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
 
     View recyclerView = findViewById(R.id.recycler_view);
@@ -37,6 +41,7 @@ public class TransactionActivity extends AppCompatActivity implements OrmHelper.
     setupRecyclerView((RecyclerView) recyclerView);
 
   }
+
 
   private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
     try {
@@ -75,11 +80,18 @@ public class TransactionActivity extends AppCompatActivity implements OrmHelper.
     }
   }
 
+  /**
+   *Provides a binding from Transaction Database to display in RecyclerView.
+   */
   public class SimpleItemRecyclerViewAdapter
       extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
     private final List<TransactionDatabase> mValues;
 
+    /**
+     *Provides a binding of list items to display in RecyclerView, has parameters.
+     * @param items items from transactions input by user.
+     */
     public SimpleItemRecyclerViewAdapter(List<TransactionDatabase> items) {
       mValues = items;
     }
@@ -110,14 +122,30 @@ public class TransactionActivity extends AppCompatActivity implements OrmHelper.
       return mValues.size();
     }
 
+    /**
+     *Uses custom implementations to store transaction data.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+      /**
+       * Names the View of the recycler view.
+       */
       public final View mView;
+
+      /**
+       * Names the text to dispensary.
+       */
       public final TextView dispensary;
 
-//      public final
+      /**
+       * Names the database for transactions.
+       */
       public TransactionDatabase mItem;
 
+      /**
+       * Creates the view holder with view params.
+       * @param view
+       */
       public ViewHolder(View view) {
         super(view);
         mView = view;

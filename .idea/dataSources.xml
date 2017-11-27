@@ -27,5 +27,18 @@
         </library>
       </libraries>
     </data-source>
+    <data-source source="LOCAL" name="Android SQLite" uuid="1a753363-49db-4824-bc3c-c97e8d63450b">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$USER_HOME$/Library/Caches/IntelliJIdea2017.2/android/databases/EMULATOR_Nexus_5X_API_22/edu.cnm.deepdive.nmmedicalcannabis/internal/medicalcannabis.db</jdbc-url>
+      <libraries>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.16.1/sqlite-jdbc-3.16.1.jar</url>
+        </library>
+        <library>
+          <url>file://$APPLICATION_CONFIG_DIR$/jdbc-drivers/Xerial SQLiteJDBC/3.16.1/xerial-sqlite-license.txt</url>
+        </library>
+      </libraries>
+    </data-source>
   </component>
 </project>

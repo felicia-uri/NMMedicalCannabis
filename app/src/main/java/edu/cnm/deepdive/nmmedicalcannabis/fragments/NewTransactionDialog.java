@@ -14,7 +14,9 @@ import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 import edu.cnm.deepdive.nmmedicalcannabis.R;
+import edu.cnm.deepdive.nmmedicalcannabis.entities.CardDatabase;
 import edu.cnm.deepdive.nmmedicalcannabis.entities.ProductType;
 import edu.cnm.deepdive.nmmedicalcannabis.entities.SubTransaction;
 import edu.cnm.deepdive.nmmedicalcannabis.entities.TransactionDatabase;
@@ -26,8 +28,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * Creates a an alert dialog popup so users can enter each transaction.
+ */
 public class NewTransactionDialog extends DialogFragment implements View.OnClickListener {
 
+  /**
+   * Patient card ID field
+   */
   public static final String PATIENT_CARD_ID = "patientCardId";
   private Callback callback;
   private ListView transactionList;
@@ -37,10 +45,17 @@ public class NewTransactionDialog extends DialogFragment implements View.OnClick
   private EditText grams;
   private EditText date;
 
+  /**
+   * Creates class constructor
+   */
   public NewTransactionDialog() {
 
   }
 
+  /**
+   * Creates a call back for the transaction dialog using params.
+   * @param callback used to listen to changes being added to transactions
+   */
   public void setCallback (Callback callback) {
     this.callback = callback;
   }
@@ -97,16 +112,28 @@ public class NewTransactionDialog extends DialogFragment implements View.OnClick
           transactionDatabase.setPurchasedDate(simpleDateFormat.parse(date.getText().toString()));
         } catch (ParseException e) {
           e.printStackTrace();
+          Toast.makeText(getActivity(), "Invalid Date Format", Toast.LENGTH_SHORT);
+          return;
         }
 
         //Uses Orm helper to add user input to database
         try {
           ((OrmInteraction)getActivity()).getHelper().getTransactionsDao().create(
               transactionDatabase);
+
+          CardDatabase cardDatabase = ((OrmInteraction) getActivity()).getHelper()
+              .getPatientCardDao().queryForAll().get(0);
+
           for (int i = 0; i < transactionListModel.size(); i++) {
             transactionListModel.get(i).setTransactionDatabase(transactionDatabase);
             ((OrmInteraction)getActivity()).getHelper().getSubTransactionsDao().create(transactionListModel.get(i));
+            double units = transactionListModel.get(i).getGrams()*transactionListModel.get(i).getProductType().getMultiplier();
+            cardDatabase.setUnitsAvailable(cardDatabase.getUnitsAvailable()-units);
           }
+
+          //saves and updates units in database
+          ((OrmInteraction) getActivity()).getHelper().getPatientCardDao().update(cardDatabase);
+
           if (callback != null) {
             callback.refreshList();
           }
@@ -142,6 +169,9 @@ public class NewTransactionDialog extends DialogFragment implements View.OnClick
 
   }
 
+  /**
+   * refreshes the transaction history once activity is added.
+   */
   public interface Callback {
     void refreshList();
   }

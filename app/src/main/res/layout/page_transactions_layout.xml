@@ -6,7 +6,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:paddingBottom="16dp"
-  android:paddingTop="56dp"
+  android:paddingTop="25dp"
   android:paddingLeft="16dp"
   android:paddingRight="16dp"
   tools:context="edu.cnm.deepdive.nmmedicalcannabis.activities.TransactionActivity">
@@ -18,26 +18,67 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".activities.TransactionActivity">
+    tools:context=".activities.TransactionActivity"
+    android:layout_below="@+id/unitsAvailableLayout"
+    android:layout_alignParentStart="true">
 
     <android.support.v7.widget.RecyclerView
       android:id="@+id/recycler_view"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
       app:layoutManager="LinearLayoutManager"
+      app:layout_behavior="@string/appbar_scrolling_view_behavior"
       tools:layout_editor_absoluteX="8dp"
-      tools:layout_editor_absoluteY="8dp"
-      app:layout_behavior="@string/appbar_scrolling_view_behavior">
+      tools:layout_editor_absoluteY="8dp">
 
     </android.support.v7.widget.RecyclerView>
+    <!--<TextView-->
+      <!--android:id="@+id/unitsLayout"-->
+      <!--android:layout_width="wrap_content"-->
+      <!--android:layout_height="wrap_content"-->
+      <!--android:layout_marginStart="33dp"-->
+      <!--android:layout_alignParentTop="true"-->
+      <!--android:layout_toEndOf="@+id/unitsAvailableLayout"-->
+      <!--android:text="-"-->
+      <!--android:textColor="@color/colorTextLight"-->
+      <!--android:textSize="20sp"/>-->
+    <!--<TextView-->
+      <!--android:id="@+id/unitsAvailableLayout"-->
+      <!--android:layout_width="wrap_content"-->
+      <!--android:layout_height="wrap_content"-->
+      <!--android:layout_alignParentTop="true"-->
+      <!--android:layout_centerHorizontal="true"-->
+      <!--android:text="@string/text_units_available"-->
+      <!--android:textColor="@color/colorTextLight"-->
+      <!--android:textSize="20sp"/>-->
 
   </android.support.design.widget.CoordinatorLayout>
+  <TextView
+  android:id="@+id/unitsAvailableLayout"
+  android:layout_width="wrap_content"
+  android:layout_height="wrap_content"
+    android:text="@string/text_units_available"
+    android:textColor="@color/colorTextDark"
+    android:textSize="20sp"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentStart="true"/>
 
-  <android.support.v7.widget.Toolbar
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+  <TextView
+    android:id="@+id/unitsLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="-"
+    android:textColor="@color/colorTextDark"
+    android:textSize="20sp"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"/>
 
-  </android.support.v7.widget.Toolbar>
+  <!--<android.support.v7.widget.Toolbar-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentTop="true"-->
+    <!--android:layout_alignParentStart="true">-->
+  <!--</android.support.v7.widget.Toolbar>-->
 
 
 </RelativeLayout>

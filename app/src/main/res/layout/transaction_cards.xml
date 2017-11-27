@@ -5,19 +5,41 @@
   android:id="@+id/card_view_transactions"
   app:cardBackgroundColor="@color/colorPrimary"
   android:layout_width="match_parent"
-  android:layout_height="wrap_content"
+  android:layout_height="200dp"
   app:cardCornerRadius="4dp"
   android:layout_margin="7dp">
 
   <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <!--<TextView-->
+      <!--android:id="@+id/unitsAvailableLayout"-->
+      <!--android:layout_width="wrap_content"-->
+      <!--android:layout_height="wrap_content"-->
+      <!--android:layout_alignParentTop="true"-->
+      <!--android:layout_centerHorizontal="true"-->
+      <!--android:text="@string/text_units_available"-->
+      <!--android:textColor="@color/colorTextLight"-->
+      <!--android:textSize="20sp"/>-->
+    <!---->
+    <!--<TextView-->
+    <!--android:id="@+id/unitsLayout"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginStart="33dp"-->
+    <!--android:layout_alignParentTop="true"-->
+    <!--android:layout_toEndOf="@+id/unitsAvailableLayout"-->
+    <!--android:text="-"-->
+    <!--android:textColor="@color/colorTextLight"-->
+    <!--android:textSize="20sp"/>-->
 
     <TextView
       android:id="@+id/dispensaryName"
       android:layout_width="match_parent"
-      android:layout_height="20dp"
+      android:layout_height="35dp"
       android:layout_marginTop="5dp"
       android:layout_marginLeft="5dp"
       android:background="@color/cardview_shadow_end_color"
@@ -30,13 +52,16 @@
       android:id="@+id/purchaseDateCardView"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
+      android:layout_marginLeft="5dp"
       android:text="Purchased Date:"
       android:textColor="@color/colorTextLight"/>
 
     <ListView
       android:id="@+id/cardList"
       android:layout_width="match_parent"
-      android:layout_height="100dp"/>
+      android:layout_height="match_parent"
+      android:textColor="@color/colorTextLight"
+      android:scrollbarStyle="insideOverlay"/>
 
 
   </LinearLayout>

@@ -17,6 +17,9 @@ import edu.cnm.deepdive.nmmedicalcannabis.fragments.TransactionsPage;
 import edu.cnm.deepdive.nmmedicalcannabis.helpers.OrmHelper;
 import edu.cnm.deepdive.nmmedicalcannabis.helpers.OrmHelper.OrmInteraction;
 
+/**
+ * Creates a container fragment for each view in the navigation menu.
+ */
 public class NavigationActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener, OrmInteraction {
 
@@ -32,13 +35,15 @@ public class NavigationActivity extends AppCompatActivity
     Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);//calls toolbar
     setSupportActionBar(toolbar); //Set toolbar to act as ActionBar for this Activity (NavagationAvtivity)
 
-    /**
-     * Creates floating action button instance
-     * Uses add_transaction_button ID
-     */
+
+     // Creates floating action button instance
+     // Uses add_transaction_button ID
     FloatingActionButton addTransactionButton = (FloatingActionButton) findViewById(R.id.add_transaction_button);
 
-    //
+    /**
+     * Sets on set click listener for the add button on the transaction page.
+     * Add button will open an alert dialog which allows users to add each transaction.
+     */
     addTransactionButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
@@ -83,6 +88,9 @@ public class NavigationActivity extends AppCompatActivity
     return helper;
   }
 
+  /**
+   * Allows Navigation Activity to use OrmHelper class
+   */
   public synchronized void releaseHelper() {
     if (helper != null) {
       OpenHelperManager.releaseHelper();
@@ -126,6 +134,7 @@ public class NavigationActivity extends AppCompatActivity
   @SuppressWarnings("StatementWithEmptyBody")
   @Override
   public boolean onNavigationItemSelected(MenuItem item) {
+
     // Handle navigation view item clicks here.
     int id = item.getItemId();
 

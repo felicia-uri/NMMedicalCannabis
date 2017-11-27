@@ -70,10 +70,10 @@ public class PatientCardInfoPage extends Fragment implements OnClickListener {
       cardNumber.setEnabled(false);
       expDate.setEnabled(false);
       unitsAvailable.setEnabled(false);
-      SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd-yyyy");
+      SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
       issueDate.setText(simpleDateFormat.format(mCardDatabase.getIssueDate()));
       expDate.setText(simpleDateFormat.format(mCardDatabase.getExpDate()));
-      unitsAvailable.setText(Integer.toString(mCardDatabase.getUnitsAvailable()));
+      unitsAvailable.setText(Double.toString(mCardDatabase.getUnitsAvailable()));
     }
 
     return inflate;
@@ -107,7 +107,7 @@ public class PatientCardInfoPage extends Fragment implements OnClickListener {
       }
 
       mCardDatabase.setCardID(parseLong(cardNumber.getText().toString()));
-      SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd-yyyy");
+      SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
       mCardDatabase.setIssueDate(simpleDateFormat.parse(issueDate.getText().toString()));
       mCardDatabase.setExpDate(simpleDateFormat.parse(expDate.getText().toString()));
       mCardDatabase.setUnitsAvailable(Integer.parseInt(unitsAvailable.getText().toString()));

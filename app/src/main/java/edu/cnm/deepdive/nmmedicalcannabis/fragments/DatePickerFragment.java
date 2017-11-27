@@ -7,6 +7,9 @@ import android.support.v4.app.DialogFragment;
 import android.widget.DatePicker;
 import java.util.Calendar;
 
+/**
+ * Provides widget for selecting date.
+ */
 public class DatePickerFragment extends DialogFragment
     implements DatePickerDialog.OnDateSetListener {
 
@@ -22,6 +25,14 @@ public class DatePickerFragment extends DialogFragment
     return new DatePickerDialog(getActivity(), this, year, month, day);
   }
 
+  /**
+   * The listener used to indicate the user has finished selecting a date.
+   *
+   * @param view the picker associated with the dialog
+   * @param year the selected year
+   * @param month the selected month(0-11 for compatibility with MONTH)
+   * @param day the selected day of the mon ( 1-31, depending on month)
+   */
   public void onDateSet(DatePicker view, int year, int month, int day) {
     // Do something with the date chosen by the user
   }

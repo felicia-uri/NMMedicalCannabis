@@ -8,6 +8,9 @@ import edu.cnm.deepdive.nmmedicalcannabis.fragments.LoginPage;
 import edu.cnm.deepdive.nmmedicalcannabis.helpers.OrmHelper;
 import edu.cnm.deepdive.nmmedicalcannabis.helpers.OrmHelper.OrmInteraction;
 
+/**
+ * Creates a window to place UI content.
+ */
 public class MainActivity extends AppCompatActivity implements OrmInteraction{
 
   private OrmHelper helper;
@@ -41,6 +44,10 @@ public class MainActivity extends AppCompatActivity implements OrmInteraction{
     return helper;
   }
 
+  /**
+   * Releases open help manager.
+   * No params
+   */
   public synchronized void releaseHelper() {
     if (helper != null) {
       OpenHelperManager.releaseHelper();

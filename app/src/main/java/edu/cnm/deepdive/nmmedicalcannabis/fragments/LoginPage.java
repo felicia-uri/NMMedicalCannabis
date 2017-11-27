@@ -12,13 +12,18 @@ import android.widget.Button;
 import edu.cnm.deepdive.nmmedicalcannabis.activities.NavigationActivity;
 import edu.cnm.deepdive.nmmedicalcannabis.R;
 
-
+/**
+ * Creates the login page fragment.
+ */
 public class LoginPage extends Fragment implements OnClickListener {
 
   private OnFragmentInteractionListener mListener;
 
   private Button loginButton;
 
+  /**
+   * Login page constructor
+   */
   public LoginPage() {
     // Required empty public constructor
   }
@@ -37,13 +42,6 @@ public class LoginPage extends Fragment implements OnClickListener {
     return inflate;
   }
 
-  // TODO: Rename method, update argument and hook method into UI event
-  public void onButtonPressed(Uri uri) {
-    if (mListener != null) {
-      mListener.onFragmentInteraction(uri);
-    }
-  }
-
   @Override
   public void onDetach() {
     super.onDetach();
@@ -57,6 +55,9 @@ public class LoginPage extends Fragment implements OnClickListener {
     startActivity(intent);
   }
 
+  /**
+   * Creates a listener for the fragment to interact with activity.
+   */
   public interface OnFragmentInteractionListener {
 
     // TODO: Update argument type and name

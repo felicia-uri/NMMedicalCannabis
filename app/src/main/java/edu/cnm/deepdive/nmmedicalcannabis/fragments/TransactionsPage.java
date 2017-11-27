@@ -25,8 +25,12 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import org.w3c.dom.Text;
 
-
+/**
+ * Creates the transaction history page fragment, which lists all transactions made
+ * by the user.
+ */
 public class TransactionsPage extends Fragment implements OnClickListener {
 
   private AutoCompleteTextView dispensaryName;
@@ -35,7 +39,9 @@ public class TransactionsPage extends Fragment implements OnClickListener {
 
   private RecyclerView recyclerView;
 
-
+  /**
+   * Creates class constructor
+   */
   public TransactionsPage() {
     // Required empty public constructor
   }
@@ -52,6 +58,13 @@ public class TransactionsPage extends Fragment implements OnClickListener {
 
     getActivity().findViewById(R.id.add_transaction_button).setOnClickListener(this);
 
+    try {
+      double unitsAvailable = ((OrmInteraction) getActivity()).getHelper().getPatientCardDao()
+          .queryForAll().get(0).getUnitsAvailable();
+      ((TextView) inflate.findViewById(R.id.unitsLayout)).setText(Double.toString(unitsAvailable));
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
 
     return inflate;
 
@@ -84,11 +97,18 @@ public class TransactionsPage extends Fragment implements OnClickListener {
     }
   }
 
+  /**
+   * Recycles views based on the transactions added.
+   */
   public class SimpleItemRecyclerViewAdapter
       extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
     private final List<TransactionDatabase> mValues;
 
+    /**
+     * Creates recycler view adapter to add all items to transaction history page.
+     * @param items list of cannabis purchases
+     */
     public SimpleItemRecyclerViewAdapter(List<TransactionDatabase> items) {
       mValues = items;
     }
@@ -133,14 +153,37 @@ public class TransactionsPage extends Fragment implements OnClickListener {
       return mValues.size();
     }
 
+    /**
+     * Creates cards for each transaction added.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+      /**
+       * The view associated with the transaction.
+       */
       public final View mView;
+      /**
+       * Text name for dispensary purchased from.
+       */
       public final TextView dispensary;
+      /**
+       * Text name for date purchased
+       */
       public final TextView purchasedDate;
+      /**
+       * Creates card list views.
+       */
       public final ListView cardList;
+      /**
+       * Items from transaction database.
+       */
       public TransactionDatabase mItem;
 
+
+      /**
+       *
+       * @param view
+       */
       public ViewHolder(View view) {
         super(view);
         mView = view;
