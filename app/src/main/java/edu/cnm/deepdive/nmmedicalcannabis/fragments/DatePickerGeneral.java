@@ -12,12 +12,18 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-
+/**
+ * Creates date picker for general use.
+ */
 public class DatePickerGeneral extends DialogFragment
     implements DatePickerDialog.OnDateSetListener{
 
   private Callback callback = null;
 
+  /**
+   * Gets callback to send.
+   * @param callback
+   */
   public void setCallback(Callback callback) {
     this.callback = callback;
   }
@@ -48,6 +54,9 @@ public class DatePickerGeneral extends DialogFragment
 //    newPurchaseDate.setText(simpleDateFormat.format(cal.getTime()));
   }
 
+  /**
+   * Updates the date user picks.
+   */
   public interface Callback {
     void update(Date date);
   }

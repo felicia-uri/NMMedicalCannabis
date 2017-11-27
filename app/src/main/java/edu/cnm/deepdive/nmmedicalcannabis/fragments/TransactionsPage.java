@@ -28,8 +28,7 @@ import java.util.List;
 import org.w3c.dom.Text;
 
 /**
- * Creates the transaction history page fragment, which lists all transactions made
- * by the user.
+ * Creates card views for the transaction page
  */
 public class TransactionsPage extends Fragment implements OnClickListener {
 
@@ -173,22 +172,28 @@ public class TransactionsPage extends Fragment implements OnClickListener {
     public class ViewHolder extends RecyclerView.ViewHolder {
 
       /**
-       * The view associated with the transaction.
+       * Creates view field
        */
       public final View mView;
       /**
-       * Text name for dispensary purchased from.
+       * Creates dispensary field.
        */
       public final TextView dispensary;
       /**
-       * Text name for date purchased
+       * Creates purchased date field.
        */
       public final TextView purchasedDate;
       /**
-       * Creates card list views.
+       * Creates card list field.
        */
       public final ListView cardList;
+      /**
+       * Creates total units field.
+       */
       public final TextView totalUnits;
+      /**
+       * Creates total grams field.
+       */
       public final TextView totalGrams;
       /**
        * Items from transaction database.
@@ -197,7 +202,7 @@ public class TransactionsPage extends Fragment implements OnClickListener {
 
 
       /**
-       *
+       *Creates the view holder for each card view.
        * @param view
        */
       public ViewHolder(View view) {

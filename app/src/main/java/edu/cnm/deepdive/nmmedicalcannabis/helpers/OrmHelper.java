@@ -13,6 +13,9 @@ import edu.cnm.deepdive.nmmedicalcannabis.entities.TransactionDatabase;
 import java.sql.SQLException;
 import java.util.Calendar;
 
+/**
+ * Creates helper for SQLite database.
+ */
 public class OrmHelper extends OrmLiteSqliteOpenHelper {
 
   private static final String DATABASE_NAME = "medicalcannabis.db";
@@ -23,6 +26,10 @@ public class OrmHelper extends OrmLiteSqliteOpenHelper {
   private Dao<ProductType, Integer> productTypeDao;
   private Dao<SubTransaction, Integer> subTransactionsDao;
 
+  /**
+   * Helps send data from context of param.
+   * @param context
+   */
   public OrmHelper(Context context) {
     super(context, DATABASE_NAME, null, DATABASE_VERSION);
   }
@@ -52,6 +59,11 @@ public class OrmHelper extends OrmLiteSqliteOpenHelper {
 
   }
 
+  /**
+   * Creates Dao for card database.
+   * @return returns patient card.
+   * @throws SQLException
+   */
   public synchronized Dao<CardDatabase, Integer> getPatientCardDao() throws SQLException {
     if (patientCardDao == null) {
       patientCardDao = getDao(CardDatabase.class);
@@ -59,6 +71,11 @@ public class OrmHelper extends OrmLiteSqliteOpenHelper {
     return patientCardDao;
   }
 
+  /**
+   * Creates Dao for transaction database.
+   * @return returns transactions.
+   * @throws SQLException
+   */
   public synchronized Dao<TransactionDatabase, Integer> getTransactionsDao() throws SQLException {
     if (transactionsDao == null) {
       transactionsDao = getDao(TransactionDatabase.class);
@@ -66,6 +83,11 @@ public class OrmHelper extends OrmLiteSqliteOpenHelper {
     return transactionsDao;
   }
 
+  /**
+   * Creates Dao for product type.
+   * @return returns product type.
+   * @throws SQLException
+   */
   public synchronized Dao<ProductType, Integer> getProductTypeDao() throws SQLException {
     if (productTypeDao == null) {
       productTypeDao = getDao(ProductType.class);
@@ -74,6 +96,11 @@ public class OrmHelper extends OrmLiteSqliteOpenHelper {
 
   }
 
+  /**
+   * Creates Dao for sub-transactions.
+   * @return returns sub-transactions.
+   * @throws SQLException
+   */
   public synchronized Dao<SubTransaction, Integer> getSubTransactionsDao() throws SQLException {
     if (subTransactionsDao == null) {
       subTransactionsDao = getDao(SubTransaction.class);
@@ -122,6 +149,9 @@ public class OrmHelper extends OrmLiteSqliteOpenHelper {
   }
 
 
+  /**
+   * Creates public helper.
+   */
   public interface OrmInteraction {
     OrmHelper getHelper();
   }

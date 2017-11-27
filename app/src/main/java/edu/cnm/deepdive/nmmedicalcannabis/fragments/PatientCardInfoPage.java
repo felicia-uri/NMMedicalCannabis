@@ -34,6 +34,9 @@ public class PatientCardInfoPage extends Fragment implements OnClickListener {
   private CardDatabase mCardDatabase = null;
 
 
+  /**
+   * Creates class constructor.
+   */
   public PatientCardInfoPage() {
     // Required empty public constructor
   }
@@ -94,8 +97,6 @@ public class PatientCardInfoPage extends Fragment implements OnClickListener {
 
     if (view.getId() == R.id.button_save_patient_id_page) {
 
-
-
     try {
       if (mCardDatabase == null) {
         mCardDatabase = new CardDatabase();
@@ -126,7 +127,9 @@ public class PatientCardInfoPage extends Fragment implements OnClickListener {
   }
 
 
-
+  /**
+   * Creates interaction listener.
+   */
   public interface OnFragmentInteractionListener {
 
     // TODO: Update argument type and name
