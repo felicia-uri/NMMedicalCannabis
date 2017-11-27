@@ -60,6 +60,7 @@ public class PatientCardInfoPage extends Fragment implements OnClickListener {
 
     cardNumber = inflate.findViewById(R.id.editCardNumber);
     issueDate = inflate.findViewById(R.id.editIssueDate);
+    issueDate.setOnClickListener(this);
     expDate = inflate.findViewById(R.id.editExpDate);
     unitsAvailable = inflate.findViewById(R.id.editUnitsAvailable);
 
@@ -79,12 +80,6 @@ public class PatientCardInfoPage extends Fragment implements OnClickListener {
     return inflate;
   }
 
-  // TODO: Rename method, update argument and hook method into UI event
-  public void onButtonPressed(Uri uri) {
-    if (mListener != null) {
-      mListener.onFragmentInteraction(uri);
-    }
-  }
 
   @Override
   public void onDetach() {
@@ -129,6 +124,7 @@ public class PatientCardInfoPage extends Fragment implements OnClickListener {
     }
 
   }
+
 
 
   public interface OnFragmentInteractionListener {

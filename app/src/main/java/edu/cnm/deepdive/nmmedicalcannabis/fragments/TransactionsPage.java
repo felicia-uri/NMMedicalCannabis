@@ -38,6 +38,7 @@ public class TransactionsPage extends Fragment implements OnClickListener {
   private EditText gramsAmount;
 
   private RecyclerView recyclerView;
+  private View inflate;
 
   /**
    * Creates class constructor
@@ -52,19 +53,14 @@ public class TransactionsPage extends Fragment implements OnClickListener {
       Bundle savedInstanceState) {
 
     // Inflate the layout for this fragment
-    View inflate = inflater.inflate(R.layout.page_transactions_layout, container, false);
+    inflate = inflater.inflate(R.layout.page_transactions_layout, container, false);
     recyclerView = inflate.findViewById(R.id.recycler_view);
     setupRecyclerView(recyclerView);
 
+
     getActivity().findViewById(R.id.add_transaction_button).setOnClickListener(this);
 
-    try {
-      double unitsAvailable = ((OrmInteraction) getActivity()).getHelper().getPatientCardDao()
-          .queryForAll().get(0).getUnitsAvailable();
-      ((TextView) inflate.findViewById(R.id.unitsLayout)).setText(Double.toString(unitsAvailable));
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
+
 
     return inflate;
 
@@ -86,6 +82,15 @@ public class TransactionsPage extends Fragment implements OnClickListener {
 
 
   private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
+
+    try {
+      double unitsAvailable = ((OrmInteraction) getActivity()).getHelper().getPatientCardDao()
+          .queryForAll().get(0).getUnitsAvailable();
+      ((TextView) inflate.findViewById(R.id.unitsLayout)).setText(Double.toString(unitsAvailable));
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+
     try {
       Dao<TransactionDatabase, Integer> dao = ((OrmInteraction) getActivity()).getHelper().getTransactionsDao();
       QueryBuilder<TransactionDatabase, Integer> builder = dao.queryBuilder();
@@ -133,7 +138,16 @@ public class TransactionsPage extends Fragment implements OnClickListener {
 
       ForeignCollection<SubTransaction> subTransaction = mValues.get(position).getSubTransaction();
       ArrayAdapter<SubTransaction> arrayAdapter = new ArrayAdapter<SubTransaction>(getContext(),
-          android.R.layout.simple_list_item_1, new ArrayList<SubTransaction>(subTransaction));
+          R.layout.subtransaction_item, new ArrayList<SubTransaction>(subTransaction));
+
+      double grams = 0;
+      double units = 0;
+      for (SubTransaction subTransaction1 : subTransaction) {
+        grams += subTransaction1.getGrams();
+        units += subTransaction1.getGrams() * subTransaction1.getProductType().getMultiplier();
+      }
+      holder.totalGrams.setText(String.format("%.2f", grams));
+      holder.totalUnits.setText(String.format("%.2f", units));
       holder.cardList.setAdapter(arrayAdapter);
 
       holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -174,6 +188,8 @@ public class TransactionsPage extends Fragment implements OnClickListener {
        * Creates card list views.
        */
       public final ListView cardList;
+      public final TextView totalUnits;
+      public final TextView totalGrams;
       /**
        * Items from transaction database.
        */
@@ -190,6 +206,8 @@ public class TransactionsPage extends Fragment implements OnClickListener {
         dispensary = (TextView) view.findViewById(R.id.dispensaryName);
         purchasedDate = view.findViewById(R.id.purchaseDateCardView);
         cardList = view.findViewById(R.id.cardList);
+        totalGrams= view.findViewById(R.id.totalGramsCard);
+        totalUnits = view.findViewById(R.id.totalUnitsCards);
       }
     }
   }

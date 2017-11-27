@@ -4,7 +4,11 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.view.View;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import edu.cnm.deepdive.nmmedicalcannabis.R;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 /**
@@ -34,6 +38,13 @@ public class DatePickerFragment extends DialogFragment
    * @param day the selected day of the mon ( 1-31, depending on month)
    */
   public void onDateSet(DatePicker view, int year, int month, int day) {
-    // Do something with the date chosen by the user
+    EditText issueDate = getActivity().findViewById(R.id.editIssueDate);
+    EditText expDate = getActivity().findViewById(R.id.editExpDate);
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+    Calendar cal = Calendar.getInstance();
+    cal.set(year+1, month, day);
+    expDate.setText(simpleDateFormat.format(cal.getTime()));
+    cal.set(year, month, day);
+    issueDate.setText(simpleDateFormat.format(cal.getTime()));
   }
 }
