@@ -21,65 +21,70 @@ Units are determined as followed:
 
 The motivation behind the NM Medical Cannabis app is the lack of information NM medical cannabis patients have about the medical cannabis program in New Mexico, in particular, tracking units. The app intends to give patients a way to track the allocated units provided in a 90 day rolling period and dates of purchases. 
 
+### Current State
+
+The NM Medical Cannabis app currently has a login page, a patient card info page, transaction page, and a transaction dialog. Below are the current state of each view. 
+
+#### Login Page
+   * The login page button does login to the app but the email and password functions are not at this time. 
+   
+#### Patient Card Info Page
+  (Current State)
+   * The patient ID card page is working. You are able to type in the number of your medical card, the issue and expiration date, and add units available.
+   * The issue date is a pop up date picker to enter the issue date
+   * The expiration date will automatically be generated based on the issue date, which is one year after issue date.
+  (Unimplemented)
+   * Need to create a notification alert to alert you when you are 30 days from your card expiration date. 
+   * Need to add an edit button to edit the issue and expiration date, and units available.
+   * Need to remove the add button on the page. 
+   
+#### Transaction Dialog
+   (Current State)
+    * All fields are working in the dialog.
+    * The purchase date is a date picker.
+    * Used spinner to create types of cannabis purchased
+    * Grams are converted into units using the multiplier for each type.
+    * Total grams and total units are totaled on the bottom of the card for the current transaction. 
+   (Unimplemented)
+    * Need to reformat the font sizes.
+
+#### Transaction Page
+  (Current State)
+   * Cards are being created as you enter transactions in the transaction dialog. 
+   * Add button is working and pop up the dialog fragment.
+   * Units available are at the top of the page and updates according the the type and amount of cannabis purchased.
+   * Cards hold the dispensary name, purchase date, type of cannabis purchased, strain name, and grams purchased.
+   * At the bottom of the card are the total grams and total units used for that specific transaction.
+  (Unimplemented)
+   * Need to change the TextView fields at the bottom of the cards to read "Total Grams" and "Total Units"
+   * Need to fix the card view to wrap content.
+   * Need to add a delete option so the user can delete the card. 
+   * Need to add a on click listener for the card so when it is clicked you are able to edit the card. 
+   
 
 ### Useful
 
 NM Medical Cannabis app is useful because, as of this writing, patients do not have any way of tracking their units or keep track of purchase dates. The platform NM Medical Cannabis program uses is BioTrack and also do not track dates. This is a problem because patients do not know when or if they are recieving the correct amount of units. Patients are trusting the BioTrack platform.
 
-###Current State
-
-The NM Medical Cannabis app currently has a login page, a patient card info page, and a transaction page. Below is the state of each view in the app. 
-
-The login page, as of now, is a way to enter the app. The patient card info page is set up to add the number of the patient card, enter the issue and expiration of the card, and enter the patient's current units.
-
-For the app to be in a state of readiness the app needs the following:
-- Patient Card Info Page 
-    -needs to an edit button to be able to change the issue date of your card. 
-    -the units need to update as soon as a transaction has been logged.
-- Transaction Page 
-    -Needs to finish the calculation of units depending on the type of cannabis was bought.
-    -Needs to be able to scroll through the history of transactions. 
-    -Needs to add units back to available units  
-  
-###Javadocs
-[Javadocs](docs)
-
-  ### Action items
-  
-  Patient Card ID Page
-     * Need to add fields to correct database via ORM helper.
-  New Transaction Page
-     * Need to connect fields to database via ORM helper.
-     * Need to add save button to screen which will add fields to database.
-     * When *saved button* is pressed, the Transaction History page appears. 
-  Transaction History Page
-     * Finish creating card layout to display each transaction made.
-     * Each card view display fields entered from *New Transaction* page. (dispensary name, cannabis type, strain name, and grams purchased)
-  Clean up code
-     * Need to add comments to code 
-     * Need to reformat code
-  Stretch goal
-     * Transaction History page will show views base on category chosen. (i.e. strain name, dispensary name, etc)
-
- 
-
-
-
-
-Currently, the NM Medical Cannabis app has a login page, a patient card info page, and a transaction page. The login page, as of now, is a way to enter the app. The patient card info page is set up to add the number of the patient card, enter the issue and expiration of the card, and enter the patient's current units.
-
-For the app to be in a state of readiness the app needs the following:
-- Patient Card Info Page 
-    -needs to an edit button to be able to change the issue date of your card. 
-    -the units need to update as soon as a transaction has been logged.
-- Transaction Page 
-    -Needs to finish the calculation of units depending on the type of cannabis was bought.
-    -Needs to be able to scroll through the history of transactions. 
-    -Needs to add units back to available units  
+### Hardware
 
 Currently, the NM Medical Cannabis App developed on the Android OS platform version 5.0 – 5.1.1, is using the Lollipop API level 21. 
 
 It is tested using the Nexus 5X API 22 emulator and has no orientation restrictions of which I am aware. 
+
+### Cosmetics
+
+
+  
+###Javadocs
+[Javadocs](docs)
+
+ 
+
+  
+
+Currently, the NM Medical Cannabis App developed on the Android OS platform version 5.0 – 5.1.1, is using the Lollipop API level 21. 
+
 
 The aesthetics of NM Medical Cannabis app can improve with the following:
 -A color scheme using no more than three colors. 
