@@ -93,7 +93,8 @@ It is tested using the Nexus 5X API 22 emulator and has no orientation restricti
    * Add strain database 
    * Get Login Page functioning
   
-###Javadocs
+### Javadocs
+
 [Javadocs](docs)
 
  
