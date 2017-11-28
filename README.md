@@ -30,32 +30,42 @@ The NM Medical Cannabis app currently has a login page, a patient card info page
    
 #### Patient Card Info Page
   (Current State)
+  
    * The patient ID card page is working. You are able to type in the number of your medical card, the issue and expiration date, and add units available.
    * The issue date is a pop up date picker to enter the issue date
    * The expiration date will automatically be generated based on the issue date, which is one year after issue date.
+   
   (Unimplemented)
+  
    * Need to create a notification alert to alert you when you are 30 days from your card expiration date. 
    * Need to add an edit button to edit the issue and expiration date, and units available.
    * Need to remove the add button on the page. 
    
 #### Transaction Dialog
+
    (Current State)
+   
     * All fields are working in the dialog.
     * The purchase date is a date picker.
     * Used spinner to create types of cannabis purchased
     * Grams are converted into units using the multiplier for each type.
     * Total grams and total units are totaled on the bottom of the card for the current transaction. 
+   
    (Unimplemented)
+   
     * Need to reformat the font sizes.
 
 #### Transaction Page
   (Current State)
+  
    * Cards are being created as you enter transactions in the transaction dialog. 
    * Add button is working and pop up the dialog fragment.
    * Units available are at the top of the page and updates according the the type and amount of cannabis purchased.
    * Cards hold the dispensary name, purchase date, type of cannabis purchased, strain name, and grams purchased.
    * At the bottom of the card are the total grams and total units used for that specific transaction.
+  
   (Unimplemented)
+  
    * Need to change the TextView fields at the bottom of the cards to read "Total Grams" and "Total Units"
    * Need to fix the card view to wrap content.
    * Need to add a delete option so the user can delete the card. 
@@ -74,27 +84,16 @@ It is tested using the Nexus 5X API 22 emulator and has no orientation restricti
 
 ### Cosmetics
 
-
+   * Would like to change the color scheme
+   * Would like to change the font style
+   * Would like to reformat and clean up
+   
+### Stretch Goals
+   * Create profiles for dispensaries and growers
+   * Add strain database 
+   * Get Login Page functioning
   
 ###Javadocs
 [Javadocs](docs)
 
  
-
-  
-
-Currently, the NM Medical Cannabis App developed on the Android OS platform version 5.0 – 5.1.1, is using the Lollipop API level 21. 
-
-
-The aesthetics of NM Medical Cannabis app can improve with the following:
--A color scheme using no more than three colors. 
--Change fonts to a clear modern typeface and one accent font. 
-
-Below is a list of stretch goals sorted by what would add the most utility at the top.
-
--A link to the NM health department to learn about the laws and regulations of New Mexico regarding NM Medical Cannabis.
--A link to the diagnosis you can use to apply.
--A download link to the application which is needed to apply to be considered as a patient. 
--A list of medical cannabis doctors who are certified to approve your application.
--A list of all dispensaries in the state of New Mexico.
--A profile page for doctors, dispensaries, and growers so patients can rate as they see fit. 
